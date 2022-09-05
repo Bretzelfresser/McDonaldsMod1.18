@@ -1,0 +1,65 @@
+package com.bretzelfresser.mcdonalds;
+
+import com.bretzelfresser.mcdonalds.client.renderer.ChoppingRenderer;
+import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
+import com.bretzelfresser.mcdonalds.core.BlockInit;
+import com.bretzelfresser.mcdonalds.core.ItemInit;
+import com.bretzelfresser.mcdonalds.core.RecipeInit;
+import com.bretzelfresser.mcdonalds.core.datagen.DataGatherer;
+import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.slf4j.Logger;
+
+import java.util.stream.Collectors;
+
+// The value here should match an entry in the META-INF/mods.toml file
+@Mod(McDonalds.MOD_ID)
+public class McDonalds
+{
+    // Directly reference a slf4j logger
+    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final String MOD_ID = "mcdonalds";
+
+    public static final ResourceLocation modLoc(String name){
+        return new ResourceLocation(MOD_ID, name);
+    }
+
+    public McDonalds() {
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        bus.addGenericListener(RecipeSerializer.class, RecipeInit::registerRecipes);
+        bus.addListener(this::clientSetup);
+
+        bus.addListener(DataGatherer::gatherData);
+
+        BlockInit.BLOCKS.register(bus);
+        ItemInit.ITEMS.register(bus);
+
+        BlockEntityInit.TES.register(bus);
+
+        // Register ourselves for server and other game events we are interested in
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event)
+    {
+      BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
+    }
+
+
+}
