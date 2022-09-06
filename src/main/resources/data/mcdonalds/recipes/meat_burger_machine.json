@@ -1,0 +1,13 @@
+{
+  "type": "mcdonalds:burger_recipe",
+  "input": {
+    "item" : "mcdonalds:raw_meat"
+  },
+  "output": {
+    "item": "mcdonalds:cooked_meat"
+  },
+  "burnt": {
+    "item": "mcdonalds:burnt_meat"
+  },
+  "burnTime": 400
+}
