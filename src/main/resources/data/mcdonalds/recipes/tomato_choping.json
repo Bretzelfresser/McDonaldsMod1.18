@@ -1,0 +1,10 @@
+{
+  "type": "mcdonalds:chopping_recipe",
+  "input": {
+    "item": "mcdonalds:tomato"
+  },
+  "output": {
+    "item" :  "mcdonalds:tomato_slice",
+    "count": 5
+  }
+}

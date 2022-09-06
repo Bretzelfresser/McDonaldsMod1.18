@@ -1,0 +1,10 @@
+{
+  "type": "mcdonalds:chopping_recipe",
+  "input": {
+    "item": "mcdonalds:onion"
+  },
+  "output": {
+    "item" :  "mcdonalds:onion_ring",
+    "count": 5
+  }
+}
