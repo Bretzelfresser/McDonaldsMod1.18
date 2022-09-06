@@ -6,13 +6,17 @@ import com.bretzelfresser.mcdonalds.common.util.WorldUtils;
 import com.bretzelfresser.mcdonalds.core.ItemInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -102,5 +106,19 @@ public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new ChoppingBoardBlockEntity(pos, state);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState newSTate, LevelAccessor level, BlockPos pos, BlockPos adjacentPos) {
+        if (!level.isClientSide() && direction == Direction.DOWN){
+           if (!canSurvive(state, level, pos))
+               return Blocks.AIR.defaultBlockState();
+        }
+        return state;
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        return Block.isFaceFull(world.getBlockState(pos.below()).getShape(world, pos.below()), Direction.UP);
     }
 }
