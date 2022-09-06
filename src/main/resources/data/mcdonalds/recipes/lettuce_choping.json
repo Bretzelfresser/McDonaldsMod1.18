@@ -1,0 +1,10 @@
+{
+  "type": "mcdonalds:chopping_recipe",
+  "input": {
+    "item": "mcdonalds:iceberg_lettuce"
+  },
+  "output": {
+    "item" :  "mcdonalds:iceberg_lettuce_slice",
+    "count": 5
+  }
+}

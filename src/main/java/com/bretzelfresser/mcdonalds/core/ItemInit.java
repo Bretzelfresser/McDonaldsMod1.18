@@ -37,9 +37,15 @@ public class ItemInit {
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
     public static final RegistryObject<Item> ONION = ITEMS.register("onion",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
+    public static final RegistryObject<Item> ONION_RING = ITEMS.register("onion_ring",
+            ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
     public static final RegistryObject<Item> ICEBERG_LETTUCE = ITEMS.register("iceberg_lettuce",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
+    public static final RegistryObject<Item> ICEBERG_LETTUCE_SLICE = ITEMS.register("iceberg_lettuce_slice",
+            ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
     public static final RegistryObject<Item> TOMATO = ITEMS.register("tomato",
+            ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
+    public static final RegistryObject<Item> TOMATO_SLICE = ITEMS.register("tomato_slice",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
 
     public static final RegistryObject<Item> MAYONNAISE = ITEMS.register("mayonnaise",
