@@ -12,11 +12,11 @@ public class ItemInit {
 
     public static final RegistryObject<SwordItem> KNIFE = ITEMS.register("knife", () -> new SwordItem(ModToolMaterial.IRON_KNIFE, 3, -2.5f, new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
 
-    public static final RegistryObject<Item> MEAT_10_1 = ITEMS.register("meat_10_1",
+    public static final RegistryObject<Item> MEAT_10_1 = ITEMS.register("raw_meat",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
-    public static final RegistryObject<Item> COOKED_MEAT_10_1 = ITEMS.register("cooked_meat_10_1",
+    public static final RegistryObject<Item> COOKED_MEAT_10_1 = ITEMS.register("cooked_meat",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
-    public static final RegistryObject<Item> BURNT_MEAT_10_1 = ITEMS.register("burnt_meat_10_1",
+    public static final RegistryObject<Item> BURNT_MEAT_10_1 = ITEMS.register("burnt_meat",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
 
     public static final RegistryObject<Item> BREAD_CROWN = ITEMS.register("bread_crown",
