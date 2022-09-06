@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "mcdonalds:block/cutting_board"
+		"0": "mcdonalds:block/cutting_board",
+		"particle": "mcdonalds:block/cutting_board"
 	},
 	"elements": [
 		{
