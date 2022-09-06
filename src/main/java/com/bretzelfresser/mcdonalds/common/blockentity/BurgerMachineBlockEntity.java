@@ -1,8 +1,10 @@
 package com.bretzelfresser.mcdonalds.common.blockentity;
 
+import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.recipe.BurgerMachineRecipe;
 import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
+import com.bretzelfresser.mcdonalds.core.SoundInit;
 import com.bretzelfresser.mcdonalds.core.config.McDonaldsConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,6 +13,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ContainerData;
@@ -30,42 +33,20 @@ public class BurgerMachineBlockEntity extends BlockEntity {
     private int counter = 0, maxCounter = 0, burnCounter = 0, maxBurnCounter = 0;
     private float degrees = MAX_DEGREES;
 
-    protected final ContainerData data;
-
     public BurgerMachineBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityInit.CHOPPING_BOARD.get(), pos, state);
-        this.data = new ContainerData() {
-            @Override
-            public int get(int index) {
-                return switch (index) {
-                    case 0 -> BurgerMachineBlockEntity.this.counter;
-                    case 1 -> BurgerMachineBlockEntity.this.maxCounter;
-                    case 2 -> BurgerMachineBlockEntity.this.burnCounter;
-                    case 3 -> BurgerMachineBlockEntity.this.maxBurnCounter;
-                    case 4 -> BurgerMachineBlockEntity.MAX_DEGREES;
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int index, int value) {
-                switch (index) {
-                    case 0 -> BurgerMachineBlockEntity.this.counter = value;
-                    case 1 -> BurgerMachineBlockEntity.this.maxCounter = value;
-                    case 2 -> BurgerMachineBlockEntity.this.burnCounter = value;
-                    case 3 -> BurgerMachineBlockEntity.this.maxBurnCounter = value;
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 5;
-            }
-        };
+        super(BlockEntityInit.BURGER_MACHINE.get(), pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, BurgerMachineBlockEntity entity) {
-        if (!level.isClientSide) {
+        if (level.isClientSide) {
+            if (entity.burnCounter > 0) {
+                for (int i = 0; i < 10; i++) {
+                    level.addParticle(ParticleTypes.SMOKE, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.01, 0);
+                }
+            }else if(entity.counter > 0){
+                level.addParticle(ParticleTypes.SMOKE, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.01, 0);
+            }
+        } else {
             if (entity.closing) {
                 if (entity.degrees > 0) {
                     entity.degrees -= 1f;
@@ -75,7 +56,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                     entity.closed = true;
                 }
                 entity.blockUpdate();
-            }else if(entity.opening){
+            } else if (entity.opening) {
                 if (entity.degrees < MAX_DEGREES) {
                     entity.degrees += 1f;
                 } else {
@@ -88,7 +69,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
             if (entity.closed) {
                 BurgerMachineRecipe recipe = entity.getRecipe();
                 if (recipe != null) {
-                    if (entity.maxBurnCounter > 0) {
+                    if (entity.maxBurnCounter > 0 && !entity.isOpening()) {
                         if (entity.inv.getItem(0).isEmpty())
                             entity.resetBurn();
                         else {
@@ -96,6 +77,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                             if (entity.maxBurnCounter < entity.burnCounter) {
                                 entity.finishBurning(recipe);
                             }
+                            entity.blockUpdate();
                         }
                     } else {
                         if (entity.counter <= 0) {
@@ -113,6 +95,10 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                     entity.resetBurn();
                     entity.blockUpdate();
                 }
+            }else if (entity.inv.getItem(0).isEmpty()){
+                entity.reset();
+                entity.resetBurn();
+                entity.blockUpdate();
             }
         }
     }
@@ -136,24 +122,25 @@ public class BurgerMachineBlockEntity extends BlockEntity {
 
     private void work(BurgerMachineRecipe recipe) {
         this.counter++;
-        for (int i = 0; i < 30; i++) {
-            level.addParticle(ParticleTypes.SMOKE, getBlockPos().getX() + level.random.nextDouble() - 0.5, getBlockPos().getY() + 1, getBlockPos().getZ() + level.random.nextDouble() - 0.5, 0, 0.01, 0);
-        }
     }
 
     private void finishWork(BurgerMachineRecipe recipe) {
         this.inv.setItem(0, recipe.getResultItem());
-        int maxBurnCounter = McDonaldsConfig.MACHINE_CONFIG.get();
+        int maxBurnCounter = McDonaldsConfig.TIME_TO_BURN.get();
         reset();
+        this.opening = true;
+        this.level.playSound(null, getBlockPos(), SoundInit.BURGER_FINISHED.get(), SoundSource.BLOCKS, 1f, 1f);
         if (maxBurnCounter > 0) {
             this.maxBurnCounter = maxBurnCounter;
         }
+        burnCounter = 0;
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
     }
 
     private void finishBurning(BurgerMachineRecipe recipe) {
         this.inv.setItem(0, recipe.getBurnt());
         resetBurn();
+        this.level.playSound(null, getBlockPos(), SoundInit.BURGER_FINISHED.get(), SoundSource.BLOCKS, 1f, 1f);
         level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
     }
 
@@ -166,27 +153,30 @@ public class BurgerMachineBlockEntity extends BlockEntity {
     private void resetBurn() {
         this.burnCounter = 0;
         this.maxBurnCounter = 0;
+        blockUpdate();
     }
 
     public void setClosing() {
         this.closing = true;
     }
 
-    /*@Nullable
+    @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return new ClientGamePacketListener(this.getBlockPos(), 0, write(new CompoundTag()));
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        this.read(null, pkt.CompoundTag());
+        this.load(pkt.getTag());
     }
 
     @Override
     public CompoundTag getUpdateTag() {
-        return this.write(new CompoundTag());
-    }*/
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag);
+        return tag;
+    }
 
     public boolean isClosing() {
         return closing;

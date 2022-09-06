@@ -4,6 +4,7 @@ import com.bretzelfresser.mcdonalds.common.blockentity.BurgerMachineBlockEntity;
 import com.bretzelfresser.mcdonalds.common.recipe.BurgerMachineRecipe;
 import com.bretzelfresser.mcdonalds.common.util.WorldUtils;
 import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
+import com.bretzelfresser.mcdonalds.core.ItemInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -39,20 +40,23 @@ public class BurgerMachine extends BaseEntityBlock{
             BurgerMachineRecipe recipe = worldIn.getRecipeManager().getRecipeFor(RecipeInit.BURGER_RECIPE, new SimpleContainer(held), worldIn).orElse(null);
             BurgerMachineBlockEntity te = WorldUtils.getTileEntity(BurgerMachineBlockEntity.class, worldIn, pos);
             if (te != null){
-                System.out.println(player.isCrouching());
-                if (player.isCrouching() && !te.isClosed() && !te.isClosing() && !te.isOpening()){
+                if (player.isCrouching() && !te.isClosed() && !te.isOpening() && !te.getInv().getItem(0).isEmpty()){
                     te.setClosing();
                     worldIn.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
-                }else if (held.isEmpty() && !te.isClosed()){
+                    return InteractionResult.SUCCESS;
+                }else if (held.getItem() == ItemInit.SPATULA.get() && !te.isClosed() && !te.getInv().getItem(0).isEmpty()){
                     player.addItem(te.getInv().getItem(0));
                     te.getInv().setItem(0, ItemStack.EMPTY);
                     worldIn.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
+                    return InteractionResult.SUCCESS;
                 }else if(recipe != null && recipe.getInput().test(held) && te.getInv().getItem(0).isEmpty()){
                     ItemStack copy = held.copy();
-                    held.shrink(1);
+                    if (!player.isCreative())
+                        held.shrink(1);
                     copy.setCount(1);
                     te.getInv().setItem(0, copy);
                     worldIn.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
+                    return InteractionResult.SUCCESS;
                 }
             }
         }

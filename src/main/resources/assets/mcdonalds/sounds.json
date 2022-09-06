@@ -1,0 +1,8 @@
+{
+  "burger_finished": {
+    "subtitle": "sound.mcdonalds.burger_finished",
+    "sounds": [
+      "mcdonalds:burger_finished"
+    ]
+  }
+}

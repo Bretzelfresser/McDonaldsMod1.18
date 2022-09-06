@@ -1,5 +1,9 @@
 {
   "credit": "Made with Blockbench",
+  "textures": {
+    "missing": "mcdonalds:block/burger_machine",
+    "particle": "mcdonalds:block/burger_machine"
+  },
   "elements": [
     {
       "from": [0, 0, 1],

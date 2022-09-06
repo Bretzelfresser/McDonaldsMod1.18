@@ -49,7 +49,7 @@ public class BurgerMachineRecipe implements Recipe<Container> {
     }
 
     public ItemStack getBurnt() {
-        return burnt;
+        return burnt.copy();
     }
 
     public int getBurnTime() {

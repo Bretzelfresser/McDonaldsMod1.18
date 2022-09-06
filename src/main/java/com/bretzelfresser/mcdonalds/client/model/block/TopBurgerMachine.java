@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.RenderType;
 
 public class TopBurgerMachine extends Model {
 
-    private final ModelPart Top;
+    public final ModelPart Top;
 
     public TopBurgerMachine(ModelPart root) {
         super(RenderType::entitySolid);

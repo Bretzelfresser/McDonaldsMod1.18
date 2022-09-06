@@ -1,10 +1,8 @@
 package com.bretzelfresser.mcdonalds;
 
+import com.bretzelfresser.mcdonalds.client.renderer.BurgerMachineRenderer;
 import com.bretzelfresser.mcdonalds.client.renderer.ChoppingRenderer;
-import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
-import com.bretzelfresser.mcdonalds.core.BlockInit;
-import com.bretzelfresser.mcdonalds.core.ItemInit;
-import com.bretzelfresser.mcdonalds.core.RecipeInit;
+import com.bretzelfresser.mcdonalds.core.*;
 import com.bretzelfresser.mcdonalds.core.config.McDonaldsConfig;
 import com.bretzelfresser.mcdonalds.core.datagen.DataGatherer;
 import com.mojang.logging.LogUtils;
@@ -56,13 +54,15 @@ public class McDonalds
 
         BlockEntityInit.TES.register(bus);
 
+        SoundInit.SOUNDS.register(bus);
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void clientSetup(final FMLClientSetupEvent event)
-    {
+    private void clientSetup(final FMLClientSetupEvent event) {
       BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
+      BlockEntityRenderers.register(BlockEntityInit.BURGER_MACHINE.get(), BurgerMachineRenderer::new);
     }
 
 

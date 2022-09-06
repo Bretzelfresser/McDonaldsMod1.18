@@ -4,7 +4,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class McDonaldsConfig {
 
-    public static ForgeConfigSpec.IntValue MACHINE_CONFIG;
+    public static ForgeConfigSpec.IntValue TIME_TO_BURN;
 
     public static final ForgeConfigSpec init(){
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -16,7 +16,7 @@ public class McDonaldsConfig {
         builder.push("Machines");
         builder.comment("how much ticks until a finished meat will then be burnt");
         builder.comment("place -1 so things will never burn");
-        MACHINE_CONFIG = builder.defineInRange("timeToBurn", 200, -2, Integer.MAX_VALUE);
+        TIME_TO_BURN = builder.defineInRange("timeToBurn", 200, -2, Integer.MAX_VALUE);
         builder.pop();
     }
 }

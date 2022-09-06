@@ -24,6 +24,7 @@ public class DataGatherer {
 
     private static final void gatherServerData(DataGenerator gen, ExistingFileHelper helper){
         gen.addProvider(new ModBlockTagsProvider(gen, helper));
+        gen.addProvider(new ModLootTableProvider(gen));
     }
 
     private static final void gatherClientData(DataGenerator gen, ExistingFileHelper helper){
