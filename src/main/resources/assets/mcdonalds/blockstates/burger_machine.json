@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mcdonalds:block/burger_machine"
+    },
+    "facing=east": {
+      "model": "mcdonalds:block/burger_machine",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "mcdonalds:block/burger_machine",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mcdonalds:block/burger_machine",
+      "y": 270
+    }
+  }
+}

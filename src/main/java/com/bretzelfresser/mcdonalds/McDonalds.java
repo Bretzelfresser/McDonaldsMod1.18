@@ -5,6 +5,7 @@ import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
 import com.bretzelfresser.mcdonalds.core.BlockInit;
 import com.bretzelfresser.mcdonalds.core.ItemInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
+import com.bretzelfresser.mcdonalds.core.config.McDonaldsConfig;
 import com.bretzelfresser.mcdonalds.core.datagen.DataGatherer;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -17,7 +18,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -42,6 +45,7 @@ public class McDonalds
 
     public McDonalds() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, McDonaldsConfig.init());
         bus.addGenericListener(RecipeSerializer.class, RecipeInit::registerRecipes);
         bus.addListener(this::clientSetup);
 
