@@ -31,7 +31,7 @@ public class RenderUtil {
         matrixStack.mulPose(Vector3f.XN.rotationDegrees(90));
         matrixStack.scale(scale, scale, scale);
 
-        Minecraft.getInstance().getItemRenderer().renderStatic(mc.player, stack, ItemTransforms.TransformType.NONE, false, matrixStack, buffer, mc.level, combinedOverlay, combinedOverlay, lightLevel);
+        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, lightLevel, combinedOverlay, matrixStack, buffer, 0);
         matrixStack.popPose();
     }
 }
