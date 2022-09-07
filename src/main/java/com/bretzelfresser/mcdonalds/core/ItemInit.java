@@ -1,6 +1,7 @@
 package com.bretzelfresser.mcdonalds.core;
 
 import com.bretzelfresser.mcdonalds.McDonalds;
+import com.bretzelfresser.mcdonalds.common.item.PaperBag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.registries.DeferredRegister;
@@ -67,5 +68,6 @@ public class ItemInit {
     public static final RegistryObject<Item> SPATULA = ITEMS.register("spatula",
             () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
 
+    public static final RegistryObject<Item> PAPER_BAG = ITEMS.register("paper_bag", PaperBag::new);
 
 }

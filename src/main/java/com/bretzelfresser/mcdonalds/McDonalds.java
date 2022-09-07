@@ -2,10 +2,13 @@ package com.bretzelfresser.mcdonalds;
 
 import com.bretzelfresser.mcdonalds.client.renderer.BurgerMachineRenderer;
 import com.bretzelfresser.mcdonalds.client.renderer.ChoppingRenderer;
+import com.bretzelfresser.mcdonalds.client.screens.PaperBagScreen;
 import com.bretzelfresser.mcdonalds.core.*;
 import com.bretzelfresser.mcdonalds.core.config.McDonaldsConfig;
 import com.bretzelfresser.mcdonalds.core.datagen.DataGatherer;
+import com.mojang.blaze3d.platform.ScreenManager;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -63,6 +66,8 @@ public class McDonalds
     private void clientSetup(final FMLClientSetupEvent event) {
       BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
       BlockEntityRenderers.register(BlockEntityInit.BURGER_MACHINE.get(), BurgerMachineRenderer::new);
+
+        MenuScreens.register(ContainerInit.PAPER_BAG.get(), PaperBagScreen::new);
     }
 
 
