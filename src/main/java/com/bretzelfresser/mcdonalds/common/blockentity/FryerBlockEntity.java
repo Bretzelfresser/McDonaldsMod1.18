@@ -78,8 +78,22 @@ public class FryerBlockEntity extends BlockEntity {
     }
 
     protected void finishProcessing(FryerRecipe recipe) {
-
+        inv.getStackInSlot(0).shrink(1);
+        if (inv.getStackInSlot(1).isEmpty()){
+            inv.setStackInSlot(1, recipe.getResultItem().copy());
+        }else {
+            inv.getStackInSlot(1).grow(recipe.getResultItem().getCount());
+        }
+        increaseItemsFried();
         reset();
+    }
+
+    protected void increaseItemsFried(){
+        this.itemsFried++;
+        if (this.itemsFried >= McDonaldsConfig.ITEMS_FRIED.get()){
+            this.oilLevel = 0;
+            this.itemsFried = 0;
+        }
     }
 
     public boolean hasEnoughOil() {
