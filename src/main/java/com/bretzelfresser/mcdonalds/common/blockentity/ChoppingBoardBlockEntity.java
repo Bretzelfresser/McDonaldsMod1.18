@@ -3,6 +3,7 @@ package com.bretzelfresser.mcdonalds.common.blockentity;
 import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -51,5 +52,9 @@ public class ChoppingBoardBlockEntity extends BlockEntity {
 
     public ItemStackHandler getInv() {
         return inv;
+    }
+
+    protected void blockUpdate(){
+        this.level.sendBlockUpdated(getBlockPos(), getBlockState(),getBlockState(), 3);
     }
 }

@@ -30,7 +30,7 @@ public class BurgerMachine extends BaseEntityBlock{
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public BurgerMachine() {
-        super(BlockBehaviour.Properties.of(Material.METAL).strength(5, 5).noOcclusion());
+        super(BlockBehaviour.Properties.of(Material.METAL).strength(5, 5).noOcclusion().requiresCorrectToolForDrops());
     }
 
     @Override

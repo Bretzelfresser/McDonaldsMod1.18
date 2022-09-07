@@ -22,6 +22,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         horizontalBlock(BlockInit.COPPING_BOARD.get(), new ModelFile.ExistingModelFile(modLoc("block/chopping_board"), models().existingFileHelper));
         simpleBlockItem(BlockInit.COPPING_BOARD.get(), new ModelFile.ExistingModelFile(modLoc("block/chopping_board"), models().existingFileHelper));
+        horizontalBlock(BlockInit.FRYER.get(), new ModelFile.ExistingModelFile(modLoc("block/fryer"), models().existingFileHelper));
+        simpleBlockItem(BlockInit.FRYER.get(), new ModelFile.ExistingModelFile(modLoc("block/fryer"), models().existingFileHelper));
     }
 
 

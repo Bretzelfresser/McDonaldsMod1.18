@@ -1,0 +1,9 @@
+{
+  "type": "mcdonalds:fryer_recipe",
+  "input": {
+    "item": "mcdonalds:stripped_potatoes"
+  },
+  "output": {
+    "item" :  "mcdonalds:fries"
+  }
+}

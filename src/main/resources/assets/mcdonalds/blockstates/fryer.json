@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mcdonalds:block/fryer"
+    },
+    "facing=south": {
+      "model": "mcdonalds:block/fryer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mcdonalds:block/fryer",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "mcdonalds:block/fryer",
+      "y": 90
+    }
+  }
+}

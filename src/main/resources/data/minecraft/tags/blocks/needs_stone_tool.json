@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "mcdonalds:chopping_board",
-    "mcdonalds:burger_machine"
+    "mcdonalds:burger_machine",
+    "mcdonalds:fryer"
   ]
 }

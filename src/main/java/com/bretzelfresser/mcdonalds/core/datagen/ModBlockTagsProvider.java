@@ -15,8 +15,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(BlockTags.NEEDS_STONE_TOOL).add(BlockInit.COPPING_BOARD.get(), BlockInit.BURGER_MACHINE.get());
-        tag(BlockTags.MINEABLE_WITH_AXE).add(BlockInit.COPPING_BOARD.get());
+        tag(BlockTags.NEEDS_STONE_TOOL).add(BlockInit.COPPING_BOARD.get(), BlockInit.BURGER_MACHINE.get(), BlockInit.FRYER.get());
+        tag(BlockTags.MINEABLE_WITH_AXE).add(BlockInit.COPPING_BOARD.get(), BlockInit.FRYER.get());
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.BURGER_MACHINE.get());
     }
 }

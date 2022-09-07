@@ -34,7 +34,7 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 
 public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
     public ChoppingBoard() {
-        super(BlockBehaviour.Properties.of(Material.WOOD).strength(2, 3).noOcclusion(), makeShape());
+        super(BlockBehaviour.Properties.of(Material.WOOD).strength(2, 3).noOcclusion().requiresCorrectToolForDrops(), makeShape());
     }
 
     @Override

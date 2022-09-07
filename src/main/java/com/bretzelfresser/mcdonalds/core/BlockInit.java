@@ -3,6 +3,7 @@ package com.bretzelfresser.mcdonalds.core;
 import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.block.BurgerMachine;
 import com.bretzelfresser.mcdonalds.common.block.ChoppingBoard;
+import com.bretzelfresser.mcdonalds.common.block.Fryer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -20,6 +21,7 @@ public class BlockInit {
 
     public static final RegistryObject<ChoppingBoard> COPPING_BOARD = register("chopping_board", ChoppingBoard::new, ModCreativeTab.MC_DONALDS_TAB);
     public static final RegistryObject<BurgerMachine> BURGER_MACHINE = register("burger_machine", BurgerMachine::new, ModCreativeTab.MC_DONALDS_TAB);
+    public static final RegistryObject<Fryer> FRYER = register("fryer", Fryer::new, ModCreativeTab.MC_DONALDS_TAB);
 
     public static final <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, CreativeModeTab tab){
         return register(name, blockSupplier, new Item.Properties().tab(tab));
