@@ -46,6 +46,7 @@ public class ModLootTableProvider extends LootTableProvider {
             dropSelf(BlockInit.BURGER_MACHINE.get());
             dropSelf(BlockInit.COPPING_BOARD.get());
             dropSelf(BlockInit.FRYER.get());
+            dropSelf(BlockInit.QUARTER_POUNDER.get());
         }
 
         @Override

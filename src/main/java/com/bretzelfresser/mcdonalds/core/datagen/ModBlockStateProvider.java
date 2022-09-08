@@ -24,6 +24,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(BlockInit.COPPING_BOARD.get(), new ModelFile.ExistingModelFile(modLoc("block/chopping_board"), models().existingFileHelper));
         horizontalBlock(BlockInit.FRYER.get(), new ModelFile.ExistingModelFile(modLoc("block/fryer"), models().existingFileHelper));
         simpleBlockItem(BlockInit.FRYER.get(), new ModelFile.ExistingModelFile(modLoc("block/fryer"), models().existingFileHelper));
+        simpleBlock(BlockInit.QUARTER_POUNDER.get(), new ModelFile.ExistingModelFile(modLoc("block/quarter_pounder"), models().existingFileHelper));
+        simpleBlockItem(BlockInit.QUARTER_POUNDER.get(), new ModelFile.ExistingModelFile(modLoc("block/quarter_pounder"), models().existingFileHelper));
+
     }
 
 
