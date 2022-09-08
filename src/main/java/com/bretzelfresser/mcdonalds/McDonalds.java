@@ -56,6 +56,7 @@ public class McDonalds
         ItemInit.ITEMS.register(bus);
 
         BlockEntityInit.TES.register(bus);
+        ContainerInit.MENUS.register(bus);
 
         SoundInit.SOUNDS.register(bus);
 
