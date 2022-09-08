@@ -67,7 +67,7 @@ public class McDonalds
       BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
       BlockEntityRenderers.register(BlockEntityInit.BURGER_MACHINE.get(), BurgerMachineRenderer::new);
 
-        MenuScreens.register(ContainerInit.PAPER_BAG.get(), PaperBagScreen::new);
+      MenuScreens.register(ContainerInit.PAPER_BAG.get(), PaperBagScreen::new);
     }
 
 

@@ -1,4 +1,4 @@
-package com.bretzelfresser.mcdonalds.core;
+package com.bretzelfresser.mcdonalds.core.util;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;

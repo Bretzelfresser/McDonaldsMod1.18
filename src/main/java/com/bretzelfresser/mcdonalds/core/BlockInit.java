@@ -4,6 +4,7 @@ import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.block.BurgerMachine;
 import com.bretzelfresser.mcdonalds.common.block.ChoppingBoard;
 import com.bretzelfresser.mcdonalds.common.block.Fryer;
+import com.bretzelfresser.mcdonalds.core.util.ModCreativeTab;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;

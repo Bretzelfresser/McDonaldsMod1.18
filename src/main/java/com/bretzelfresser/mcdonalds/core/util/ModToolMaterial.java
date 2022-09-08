@@ -1,4 +1,4 @@
-package com.bretzelfresser.mcdonalds.core;
+package com.bretzelfresser.mcdonalds.core.util;
 
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
