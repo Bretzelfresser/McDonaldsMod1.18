@@ -79,7 +79,12 @@ public class PaperBag extends Item {
         ItemStackHandler inv;
 
         public CapabilityProvider(int inventorySize) {
-            this.inv = new ItemStackHandler(inventorySize);
+            this.inv = new ItemStackHandler(inventorySize){
+                @Override
+                protected int getStackLimit(int slot, @NotNull ItemStack stack) {
+                    return 1;
+                }
+            };
         }
 
         @NotNull
