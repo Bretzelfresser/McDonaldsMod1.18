@@ -1,7 +1,7 @@
 package com.bretzelfresser.mcdonalds.core;
 
 import com.bretzelfresser.mcdonalds.McDonalds;
-import com.bretzelfresser.mcdonalds.common.item.BowlItem;
+import com.bretzelfresser.mcdonalds.common.item.BaseBowlItem;
 import com.bretzelfresser.mcdonalds.common.item.PaperBag;
 import com.bretzelfresser.mcdonalds.core.util.ModCreativeTab;
 import com.bretzelfresser.mcdonalds.core.util.ModToolMaterial;
@@ -52,18 +52,18 @@ public class ItemInit {
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.TOMATO_SLICE)));
 
     public static final RegistryObject<Item> MAYONNAISE = ITEMS.register("mayonnaise",
-            ()-> new BowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MAYONNAISE)));
+            ()-> new BaseBowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MAYONNAISE), ItemInit.BOWL));
     public static final RegistryObject<Item> MUSTARD = ITEMS.register("mustard",
-            ()-> new BowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MUSTARD)));
+            ()-> new BaseBowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MUSTARD), ItemInit.BOWL));
     public static final RegistryObject<Item> KETCHUP = ITEMS.register("ketchup",
-            ()-> new BowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.KETCHUP)));
+            ()-> new BaseBowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.KETCHUP), ItemInit.BOWL));
     public static final RegistryObject<Item> BIG_MAC_SAUCE = ITEMS.register("big_mac_sauce",
-            ()-> new BowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.BIG_MAC_SAUCE)));
+            ()-> new BaseBowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.BIG_MAC_SAUCE), ItemInit.BOWL));
 
     public static final RegistryObject<Item> FRIES = ITEMS.register("fries",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.FRIES)));
     public static final RegistryObject<Item> FRIES_WITH_BOX = ITEMS.register("fries_with_box",
-            ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.FRIES_WITH_BOX)));
+            ()-> new BaseBowlItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.FRIES_WITH_BOX), ItemInit.BOX));
     public static final RegistryObject<Item> BOX = ITEMS.register("box",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
     public static final RegistryObject<Item> STRIPPED_POTATOES = ITEMS.register("stripped_potatoes",

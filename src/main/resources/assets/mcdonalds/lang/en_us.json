@@ -1,3 +1,46 @@
 {
 
+  "itemGroup.mc_donalds": "Mc Donalds",
+
+  "item.mcdonalds.knife": "Knife",
+
+  "item.mcdonalds.raw_meat": "Raw Meat",
+  "item.mcdonalds.cooked_meat": "Cooked Meat",
+  "item.mcdonalds.burnt_meat": "Burnt Meat",
+
+  "item.mcdonalds.bread_crown": "Crown Bread",
+  "item.mcdonalds.bread_middle": "Middle Bread",
+  "item.mcdonalds.bread_base": "Base Bread",
+  "item.mcdonalds.bread_simple": "Simple Bread",
+
+  "item.mcdonalds.american_cheese": "American Cheese",
+  "item.mcdonalds.pickles": "Pickles",
+  "item.mcdonalds.onion": "Onion",
+  "item.mcdonalds.onion_ring": "Onion Ring",
+  "item.mcdonalds.iceberg_lettuce": "Lettuce",
+  "item.mcdonalds.iceberg_lettuce_slice": "Lettuce Slice",
+  "item.mcdonalds.tomato": "Tomato",
+  "item.mcdonalds.tomato_slice": "Tomato Slice",
+
+  "item.mcdonalds.mayonnaise": "Mayonnaise",
+  "item.mcdonalds.mustard": "Mustard",
+  "item.mcdonalds.ketchup": "Ketchup",
+  "item.mcdonalds.big_mac_sauce": "Big Mac Sauce",
+
+  "item.mcdonalds.fries": "Fries",
+  "item.mcdonalds.fries_with_box": "Fries with Box",
+  "item.mcdonalds.box": "Box",
+  "item.mcdonalds.stripped_potatoes": "Stripped Potatoes",
+
+  "item.mcdonalds.spatula": "Spatula",
+  "item.mcdonalds.paper_bag": "Paper Bag",
+  "item.mcdonalds.bowl": "Bowl",
+
+
+  "block.mcdonalds.chopping_board": "Chopping Board",
+  "block.mcdonalds.burger_machine": "Burger Machine",
+  "block.mcdonalds.fryer": "Fryer",
+  "block.mcdonalds.quarter_pounder": "Quarter Pounder",
+
+  "container.mcdonalds.paper_bag": "Paper Bag"
 }

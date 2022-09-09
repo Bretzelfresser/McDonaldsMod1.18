@@ -48,7 +48,7 @@ public class PaperBag extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (!level.isClientSide() && player.isShiftKeyDown()) {
+        if (!level.isClientSide) {
             ItemStack helItem = player.getItemInHand(hand);
             openGui(level, player, helItem);
             return InteractionResultHolder.success(helItem);

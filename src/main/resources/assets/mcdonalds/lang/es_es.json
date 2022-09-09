@@ -1,0 +1,46 @@
+{
+
+  "itemGroup.mc_donalds": "Mc Donalds",
+
+  "item.mcdonalds.knife": "Cuchillo",
+
+  "item.mcdonalds.raw_meat": "Hamburguesa cruda",
+  "item.mcdonalds.cooked_meat": "Hamburguesa frita",
+  "item.mcdonalds.burnt_meat": "Hamburguesa quemada",
+
+  "item.mcdonalds.bread_crown": "Corona",
+  "item.mcdonalds.bread_middle": "Pan medio",
+  "item.mcdonalds.bread_base": "Pan base",
+  "item.mcdonalds.bread_simple": "Corona de Hamburguesa con queso",
+
+  "item.mcdonalds.american_cheese": "Queso americano",
+  "item.mcdonalds.pickles": "Pepinillos",
+  "item.mcdonalds.onion": "Cebolla",
+  "item.mcdonalds.onion_ring": "Aros de Cebolla",
+  "item.mcdonalds.iceberg_lettuce": "Lechuga",
+  "item.mcdonalds.iceberg_lettuce_slice": "Rebanada de lechuga",
+  "item.mcdonalds.tomato": "Tomate",
+  "item.mcdonalds.tomato_slice": "Rebanada de tomate",
+
+  "item.mcdonalds.mayonnaise": "Mayonesa",
+  "item.mcdonalds.mustard": "Mostaza",
+  "item.mcdonalds.ketchup": "Ketchup",
+  "item.mcdonalds.big_mac_sauce": "Salsa Big Mac",
+
+  "item.mcdonalds.fries": "Papas fritas",
+  "item.mcdonalds.fries_with_box": "Papas fritas en caja",
+  "item.mcdonalds.box": "Caja",
+  "item.mcdonalds.stripped_potatoes": "Tiras de papas crudas",
+
+  "item.mcdonalds.spatula": "Espatula",
+  "item.mcdonalds.paper_bag": "Bolsa de papel",
+  "item.mcdonalds.bowl": "Cuenco",
+
+
+  "block.mcdonalds.chopping_board": "Tabla de picar",
+  "block.mcdonalds.burger_machine": "Maquina de Hamburguesas",
+  "block.mcdonalds.fryer": "Freidora",
+  "block.mcdonalds.quarter_pounder": "Cuarto de Libra",
+
+  "container.mcdonalds.paper_bag": "Bolsa de Papel"
+}
