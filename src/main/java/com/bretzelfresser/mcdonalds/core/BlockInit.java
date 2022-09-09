@@ -29,7 +29,8 @@ public class BlockInit {
     public static final RegistryObject<BurgerMachine> BURGER_MACHINE = register("burger_machine", BurgerMachine::new, ModCreativeTab.MC_DONALDS_TAB);
     public static final RegistryObject<Fryer> FRYER = register("fryer", Fryer::new, ModCreativeTab.MC_DONALDS_TAB);
 
-    public static final RegistryObject<Burger> QUARTER_POUNDER = register("quarter_pounder", () -> new Burger(BlockBehaviour.Properties.of(Material.CAKE).noOcclusion().instabreak(), Burger.makeQuarterPounderShape()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(new FoodProperties.Builder().saturationMod(7).build()));
+    public static final RegistryObject<Burger> QUARTER_POUNDER = register("quarter_pounder",
+            () -> new Burger(BlockBehaviour.Properties.of(Material.CAKE).noOcclusion().instabreak(), Burger.makeQuarterPounderShape()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(new FoodProperties.Builder().nutrition(8).saturationMod(0.7F).build()));
 
     public static final <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, CreativeModeTab tab){
         return register(name, blockSupplier, new Item.Properties().tab(tab));
