@@ -1,5 +1,6 @@
 package com.bretzelfresser.mcdonalds.common.blockentity;
 
+import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.block.Fryer;
 import com.bretzelfresser.mcdonalds.common.recipe.FryerRecipe;
 import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
@@ -68,7 +69,7 @@ public class FryerBlockEntity extends BlockEntity {
 
     protected boolean canProcess(FryerRecipe recipe) {
         if (hasEnoughOil() && getBlockState().getValue(Fryer.BASKET)) {
-            return inv.getStackInSlot(1).getItem() == recipe.getResultItem().getItem() && inv.getStackInSlot(1).getCount() + recipe.getResultItem().getCount() * inv.getStackInSlot(0).getCount() <= recipe.getResultItem().getMaxStackSize();
+            return inv.getStackInSlot(1).isEmpty() || (inv.getStackInSlot(1).getItem() == recipe.getResultItem().getItem() && inv.getStackInSlot(1).getCount() + recipe.getResultItem().getCount() * inv.getStackInSlot(0).getCount() <= recipe.getResultItem().getMaxStackSize());
         }
         return false;
     }

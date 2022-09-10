@@ -1,6 +1,7 @@
 package com.bretzelfresser.mcdonalds.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -17,6 +18,7 @@ public class RotatableBlock extends Block {
 
     public RotatableBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override

@@ -40,11 +40,11 @@ public class BurgerMachineBlockEntity extends BlockEntity {
     public static void tick(Level level, BlockPos pos, BlockState state, BurgerMachineBlockEntity entity) {
         if (level.isClientSide) {
             if (entity.burnCounter > 0) {
-                for (int i = 0; i < 10; i++) {
-                    level.addParticle(ParticleTypes.SMOKE, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.01, 0);
+                for (int i = 0; i < 2; i++) {
+                    level.addParticle(ParticleTypes.CLOUD, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.02, 0);
                 }
-            }else if(entity.counter > 0){
-                level.addParticle(ParticleTypes.SMOKE, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.01, 0);
+            }else if(entity.counter > 0 && level.random.nextDouble() < 0.5){
+                level.addParticle(ParticleTypes.CLOUD, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.02, 0);
             }
         } else {
             if (entity.closing) {

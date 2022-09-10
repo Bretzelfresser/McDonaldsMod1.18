@@ -5,6 +5,7 @@ import com.bretzelfresser.mcdonalds.common.util.WorldUtils;
 import com.bretzelfresser.mcdonalds.core.ItemInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
@@ -34,6 +35,7 @@ public class Fryer extends RotatableBlock implements EntityBlock {
 
     public Fryer() {
         super(BlockBehaviour.Properties.of(Material.METAL).noOcclusion().requiresCorrectToolForDrops().strength(3));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(OIL, 0).setValue(BASKET, false).setValue(HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override
@@ -50,7 +52,8 @@ public class Fryer extends RotatableBlock implements EntityBlock {
                 }
                 if (level.getRecipeManager().getRecipeFor(RecipeInit.FRYER_RECIPE, new SimpleContainer(held), level).isPresent()) {
                     ItemStack remainder = te.getInv().insertItem(0, held, false);
-                    player.setItemInHand(hand, remainder);
+                    if (!player.isCreative())
+                        player.setItemInHand(hand, remainder);
                     return InteractionResult.SUCCESS;
                 }
                 if (held.getItem() == ItemInit.OIL.get() && state.getValue(OIL) < OIL.getPossibleValues().stream().max(Comparator.comparingInt(i -> i)).orElse(0)){

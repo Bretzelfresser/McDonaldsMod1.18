@@ -1,6 +1,5 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "Fryer",
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "mcdonalds:block/fryer",
