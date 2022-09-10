@@ -1,18 +1,123 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "mcdonalds:block/fryer"
+    "basket=false,facing=north,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_without_oil"
     },
-    "facing=south": {
-      "model": "mcdonalds:block/fryer",
+    "basket=true,facing=north,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_without_oil"
+    },
+    "basket=false,facing=south,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_without_oil",
       "y": 180
     },
-    "facing=west": {
-      "model": "mcdonalds:block/fryer",
+    "basket=true,facing=south,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_without_oil",
+      "y": 180
+    },
+    "basket=false,facing=west,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_without_oil",
       "y": 270
     },
-    "facing=east": {
-      "model": "mcdonalds:block/fryer",
+    "basket=true,facing=west,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_without_oil",
+      "y": 270
+    },
+    "basket=false,facing=east,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_without_oil",
+      "y": 90
+    },
+    "basket=true,facing=east,oil=0": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_without_oil",
+      "y": 90
+    },
+    "basket=false,facing=north,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_low_oil"
+    },
+    "basket=true,facing=north,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_low_oil"
+    },
+    "basket=false,facing=south,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_low_oil",
+      "y": 180
+    },
+    "basket=true,facing=south,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_low_oil",
+      "y": 180
+    },
+    "basket=false,facing=west,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_low_oil",
+      "y": 270
+    },
+    "basket=true,facing=west,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_low_oil",
+      "y": 270
+    },
+    "basket=false,facing=east,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_low_oil",
+      "y": 90
+    },
+    "basket=true,facing=east,oil=1": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_low_oil",
+      "y": 90
+    },
+    "basket=false,facing=north,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_middle_oil"
+    },
+    "basket=true,facing=north,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_middle_oil"
+    },
+    "basket=false,facing=south,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_middle_oil",
+      "y": 180
+    },
+    "basket=true,facing=south,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_middle_oil",
+      "y": 180
+    },
+    "basket=false,facing=west,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_middle_oil",
+      "y": 270
+    },
+    "basket=true,facing=west,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_middle_oil",
+      "y": 270
+    },
+    "basket=false,facing=east,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_middle_oil",
+      "y": 90
+    },
+    "basket=true,facing=east,oil=2": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_middle_oil",
+      "y": 90
+    },
+    "basket=false,facing=north,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_oil"
+    },
+    "basket=true,facing=north,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_oil"
+    },
+    "basket=false,facing=south,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_oil",
+      "y": 180
+    },
+    "basket=true,facing=south,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_oil",
+      "y": 180
+    },
+    "basket=false,facing=west,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_oil",
+      "y": 270
+    },
+    "basket=true,facing=west,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_oil",
+      "y": 270
+    },
+    "basket=false,facing=east,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_without_basket_with_oil",
+      "y": 90
+    },
+    "basket=true,facing=east,oil=3": {
+      "model": "mcdonalds:block/fryer/fryer_with_basket_with_oil",
       "y": 90
     }
   }

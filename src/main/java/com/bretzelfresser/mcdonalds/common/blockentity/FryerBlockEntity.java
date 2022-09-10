@@ -1,5 +1,6 @@
 package com.bretzelfresser.mcdonalds.common.blockentity;
 
+import com.bretzelfresser.mcdonalds.common.block.Fryer;
 import com.bretzelfresser.mcdonalds.common.recipe.FryerRecipe;
 import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
@@ -18,20 +19,23 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
+
 public class FryerBlockEntity extends BlockEntity {
 
 
-    private int oilLevel = 0, itemsFried = 0, counter = 0, maxCounter = 0;
+    private int itemsFried = 0, counter = 0, maxCounter = 0;
     private ItemStackHandler inv = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
             FryerBlockEntity.this.setChanged();
+            blockUpdate();
         }
 
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
-            return 20;
+            return 1;
         }
     };
 
@@ -63,8 +67,8 @@ public class FryerBlockEntity extends BlockEntity {
     }
 
     protected boolean canProcess(FryerRecipe recipe) {
-        if (hasEnoughOil()) {
-            return inv.getStackInSlot(1).getItem() == recipe.getResultItem().getItem() && inv.getStackInSlot(1).getCount() + recipe.getResultItem().getCount() <= recipe.getResultItem().getMaxStackSize();
+        if (hasEnoughOil() && getBlockState().getValue(Fryer.BASKET)) {
+            return inv.getStackInSlot(1).getItem() == recipe.getResultItem().getItem() && inv.getStackInSlot(1).getCount() + recipe.getResultItem().getCount() * inv.getStackInSlot(0).getCount() <= recipe.getResultItem().getMaxStackSize();
         }
         return false;
     }
@@ -91,17 +95,13 @@ public class FryerBlockEntity extends BlockEntity {
     protected void increaseItemsFried(){
         this.itemsFried++;
         if (this.itemsFried >= McDonaldsConfig.ITEMS_FRIED.get()){
-            this.oilLevel = 0;
+            level.setBlock(getBlockPos(), level.getBlockState(getBlockPos()).setValue(Fryer.OIL, 0), 3);
             this.itemsFried = 0;
         }
     }
 
     public boolean hasEnoughOil() {
-        return this.oilLevel == McDonaldsConfig.MAX_OIL_LEVEL.get();
-    }
-
-    public void addOilLevel() {
-        oilLevel = Math.min(McDonaldsConfig.MAX_OIL_LEVEL.get(), oilLevel + 1);
+        return getBlockState().getValue(Fryer.OIL) >= Fryer.OIL.getPossibleValues().stream().max(Comparator.comparingInt(i -> i)).orElse(Integer.MAX_VALUE);
     }
 
     @Nullable
@@ -127,7 +127,6 @@ public class FryerBlockEntity extends BlockEntity {
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt("itemsFried", this.itemsFried);
-        tag.putInt("oilLevel", this.oilLevel);
         tag.put("items", this.inv.serializeNBT());
         tag.putInt("counter", this.counter);
         tag.putInt("maxCounter", this.maxCounter);
@@ -137,7 +136,6 @@ public class FryerBlockEntity extends BlockEntity {
     public void load(CompoundTag tag) {
         super.load(tag);
         this.itemsFried = tag.getInt("itemsFried");
-        this.oilLevel = tag.getInt("oilLevel");
         this.inv.deserializeNBT(tag.getCompound("items"));
         this.counter = tag.getInt("counter");
         this.maxCounter = tag.getInt("maxCounter");

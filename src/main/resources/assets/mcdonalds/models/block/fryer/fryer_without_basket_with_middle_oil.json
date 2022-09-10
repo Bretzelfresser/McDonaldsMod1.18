@@ -3,8 +3,8 @@
 	"parent": "Fryer",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "block/fryer",
-		"particle": "block/fryer"
+		"0": "mcdonalds:block/fryer",
+		"particle": "mcdonalds:block/fryer"
 	},
 	"elements": [
 		{

@@ -2,6 +2,7 @@ package com.bretzelfresser.mcdonalds.common.block;
 
 import com.bretzelfresser.mcdonalds.common.blockentity.FryerBlockEntity;
 import com.bretzelfresser.mcdonalds.common.util.WorldUtils;
+import com.bretzelfresser.mcdonalds.core.ItemInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -17,11 +18,20 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
+
 public class Fryer extends RotatableBlock implements EntityBlock {
+
+    public static final IntegerProperty OIL = IntegerProperty.create("oil", 0, 3);
+    public static final BooleanProperty BASKET = BooleanProperty.create("basket");
+
     public Fryer() {
         super(BlockBehaviour.Properties.of(Material.METAL).noOcclusion().requiresCorrectToolForDrops().strength(3));
     }
@@ -39,10 +49,19 @@ public class Fryer extends RotatableBlock implements EntityBlock {
                     }
                 }
                 if (level.getRecipeManager().getRecipeFor(RecipeInit.FRYER_RECIPE, new SimpleContainer(held), level).isPresent()) {
-                    ItemStack remainder = te.getInv().insertItem(1, held, false);
+                    ItemStack remainder = te.getInv().insertItem(0, held, false);
                     player.setItemInHand(hand, remainder);
+                    return InteractionResult.SUCCESS;
                 }
-                //TODO the oil must be added
+                if (held.getItem() == ItemInit.OIL.get() && state.getValue(OIL) < OIL.getPossibleValues().stream().max(Comparator.comparingInt(i -> i)).orElse(0)){
+                    level.setBlock(pos, state.setValue(OIL, state.getValue(OIL) + 1), 3);
+                    held.shrink(1);
+                    return InteractionResult.SUCCESS;
+                }
+                if (held.getItem() == ItemInit.BASKET.get() && !state.getValue(BASKET)){
+                    level.setBlock(pos,state.setValue(BASKET, true), 3);
+                    return InteractionResult.SUCCESS;
+                }
             }
         }
         return InteractionResult.PASS;
@@ -73,5 +92,11 @@ public class Fryer extends RotatableBlock implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
         return (level, state, pos, blockentity) -> ((FryerBlockEntity) blockentity).tick();
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(OIL, BASKET);
     }
 }
