@@ -1,3 +1,6 @@
 {
-  "parent": "mcdonalds:block/quarter_pounder"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mcdonalds:item/quarter_pounder"
+  }
 }

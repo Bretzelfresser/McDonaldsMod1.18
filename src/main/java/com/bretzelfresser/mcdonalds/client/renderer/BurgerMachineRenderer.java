@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class BurgerMachineRenderer implements BlockEntityRenderer<BurgerMachineBlockEntity> {
 
-    private static final ResourceLocation MODEL_TEXTURE = McDonalds.modLoc("textures/block/top_burger_machine.png");
+    private static final ResourceLocation MODEL_TEXTURE = McDonalds.modLoc("textures/block/top.png");
 
     private final BlockEntityRendererProvider.Context ctx;
     private final TopBurgerMachine model;
@@ -54,7 +54,7 @@ public class BurgerMachineRenderer implements BlockEntityRenderer<BurgerMachineB
             model.Top.xRot = (float) Math.toRadians(entity.getDegrees());
             poseStack.translate(0.5f, -0.35, 0.5f);
             poseStack.mulPose(Vector3f.YN.rotationDegrees(rotation));
-            this.model.renderToBuffer(poseStack, bufferSource.getBuffer(model.renderType(new ResourceLocation("textures/block/iron_block.png"))), RenderUtil.getLightLevel(mc.level, entity.getBlockPos().above()), combinedOverlayIn, 1,1,1,1f);
+            this.model.renderToBuffer(poseStack, bufferSource.getBuffer(model.renderType(MODEL_TEXTURE)), RenderUtil.getLightLevel(mc.level, entity.getBlockPos().above()), combinedOverlayIn, 1,1,1,1f);
             poseStack.popPose();
         }
     }

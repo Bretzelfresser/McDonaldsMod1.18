@@ -20,14 +20,18 @@ public class TopBurgerMachine extends Model {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition root = meshdefinition.getRoot();
 
-        root.addOrReplaceChild("Top", CubeListBuilder.create()
-                .texOffs(0, 0).addBox(-7.0F, -2.5F, -14.75F, 14.0F, 2.0F, 15.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(-7.0F, -3.0F, -13.75F, 14.0F, 0.0F, 13.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(-2.0F, -2.0F, -15.25F, 1.0F, 1.0F, 0.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(1.0F, -2.0F, -15.25F, 1.0F, 1.0F, 0.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(-2.0F, -2.0F, -15.75F, 4.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 7.75F));
+        PartDefinition top = root.addOrReplaceChild("Top", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-7.05F, -2.0F, -14.75F, 14.0F, 2.0F, 15.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 17).addBox(-7.025F, -3.4F, -13.35F, 14.0F, 1.0F, 12.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-2.0F, -1.5F, -16.25F, 4.0F, 0.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 7.75F));
 
-        return LayerDefinition.create(meshdefinition, 16, 16);
+        top.addOrReplaceChild("cube_r1", CubeListBuilder.create()
+                .texOffs(0, 30).addBox(-7.05F, 1.8F, 6.225F, 14.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.05F, -9.0745F, -4.2789F, -0.7854F, 0.0F, 0.0F));
+
+        top.addOrReplaceChild("cube_r2", CubeListBuilder.create()
+                .texOffs(30, 31).addBox(-7.0F, -3.0F, -13.0F, 14.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -9.0711F, -3.4363F, 0.7854F, 0.0F, 0.0F));
+
+        return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
 

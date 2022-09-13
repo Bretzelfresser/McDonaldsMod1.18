@@ -27,12 +27,11 @@ public class ModItemModelsProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        registerSimpleModel(ItemInit.BASKET.get(), ItemInit.BURNT_BREAD.get(), ItemInit.BURNT_BREAD2.get(), ItemInit.BURNT_BREAD_BOTTOM.get());
-        registerSimpleModel(ItemInit.RAW_BREAD.get(), ItemInit.RAW_BREAD2.get(), ItemInit.RAW_BREAD_BOTTOM.get());
-        registerSimpleModel(ItemInit.KETCHUP_BOTTLE.get(), ItemInit.KETCHUP_BOWL.get());
-        registerSimpleModel(ItemInit.MAYO_BOTTLE.get(), ItemInit.MAYO_BOWL.get());
-        registerSimpleModel(ItemInit.MUSTARD_BOWL.get());
-        registerSimpleModel(ItemInit.OIL.get(), ItemInit.GLASS_BOWL.get(), ItemInit.CREAM_BOWL.get());
+        registerSimpleModel(ItemInit.BASKET.get(), ItemInit.BURNT_BREAD_CROWN.get(), ItemInit.BURNT_BREAD_SIMPLE.get(), ItemInit.BURNT_BREAD_BASE.get());
+        registerSimpleModel(ItemInit.RAW_BREAD_CROWN.get(), ItemInit.RAW_BREAD_SIMPLE.get(), ItemInit.RAW_BREAD_BASE.get());
+        registerSimpleModel(ItemInit.KETCHUP_BOTTLE.get());
+        registerSimpleModel(ItemInit.MAYO_BOTTLE.get());
+        registerSimpleModel(ItemInit.OIL.get());
     }
 
     private void registerSimpleModel(Item... items) {

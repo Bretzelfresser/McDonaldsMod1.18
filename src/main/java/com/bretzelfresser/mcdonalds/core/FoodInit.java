@@ -56,4 +56,15 @@ public class FoodInit {
             .saturationMod(0.5F).build();
     public static final FoodProperties STRIPPED_POTATOES = new FoodProperties.Builder().nutrition(1)
             .saturationMod(0.2F).build();
+    public static final FoodProperties SODA = new FoodProperties.Builder().nutrition(1)
+            .saturationMod(0.1F).build();
+    public static final FoodProperties BIG_MAC = new FoodProperties.Builder().nutrition(8)
+            .saturationMod(0.7F).build();
+    public static final FoodProperties QUARTER_POUNDER = new FoodProperties.Builder().nutrition(8)
+            .saturationMod(0.7F).build();
+    public static final FoodProperties CHEESE_BURGER = new FoodProperties.Builder().nutrition(6)
+            .saturationMod(0.5F).build();
+    public static final FoodProperties MC_ROYAL_DELUXE = new FoodProperties.Builder().nutrition(8)
+            .saturationMod(0.7F).build();
+
 }

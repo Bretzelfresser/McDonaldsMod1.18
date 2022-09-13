@@ -8,11 +8,11 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Supplier;
 
-public class BaseBowlItem extends Item {
+public class ReplaceableItem extends Item {
 
     private final Supplier<Item> item;
 
-    public BaseBowlItem(Properties properties, Supplier<Item> item) {
+    public ReplaceableItem(Properties properties, Supplier<Item> item) {
         super(properties);
         this.item = item;
     }

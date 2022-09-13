@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mcdonalds:item/stripped_potatoes"
+    "layer0": "mcdonalds:item/raw_french_fries"
   }
 }

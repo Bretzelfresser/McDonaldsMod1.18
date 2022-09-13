@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "mcdonalds:item/cream_bowl"
+    "layer0": "mcdonalds:item/empty_soda"
   }
 }

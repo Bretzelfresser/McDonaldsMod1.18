@@ -1,0 +1,84 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "box",
+	"texture_size": [64, 64],
+	"textures": {
+		"3": "quarter_pound_box",
+		"particle": "big_mac_box"
+	},
+	"elements": [
+		{
+			"name": "bigmac/mcroyaldeluxe",
+			"from": [3.5, 0, 3.5],
+			"to": [12.5, 3, 12.5],
+			"faces": {
+				"north": {"uv": [2.25, 9.25, 4.5, 10], "texture": "#3"},
+				"east": {"uv": [0, 9.25, 2.25, 10], "texture": "#3"},
+				"south": {"uv": [6.75, 9.25, 9, 10], "texture": "#3"},
+				"west": {"uv": [4.5, 9.25, 6.75, 10], "texture": "#3"},
+				"up": {"uv": [4.5, 9.25, 2.25, 7], "texture": "#3"},
+				"down": {"uv": [6.75, 7, 4.5, 9.25], "texture": "#3"}
+			}
+		},
+		{
+			"name": "quarterpound",
+			"from": [3.5, 0, 3.5],
+			"to": [12.5, 3, 12.5],
+			"faces": {
+				"north": {"uv": [9, 7, 11.25, 7.75], "texture": "#3"},
+				"east": {"uv": [6.75, 7, 9, 7.75], "texture": "#3"},
+				"south": {"uv": [13.5, 7, 15.75, 7.75], "texture": "#3"},
+				"west": {"uv": [11.25, 7, 13.5, 7.75], "texture": "#3"},
+				"up": {"uv": [11.25, 7, 9, 4.75], "texture": "#3"},
+				"down": {"uv": [13.5, 4.75, 11.25, 7], "texture": "#3"}
+			}
+		},
+		{
+			"name": "bigmac/mcroyaldeluxe",
+			"from": [3.4, 1.9, 3.4],
+			"to": [12.6, 6.1, 12.6],
+			"faces": {
+				"north": {"uv": [2.25, 6, 4.5, 7], "texture": "#3"},
+				"east": {"uv": [0, 6, 2.25, 7], "texture": "#3"},
+				"south": {"uv": [6.75, 6, 9, 7], "texture": "#3"},
+				"west": {"uv": [4.5, 6, 6.75, 7], "texture": "#3"},
+				"up": {"uv": [4.5, 6, 2.25, 3.75], "texture": "#3"},
+				"down": {"uv": [6.75, 3.75, 4.5, 6], "texture": "#3"}
+			}
+		},
+		{
+			"name": "quarterpound",
+			"from": [3.4, 2.9, 3.4],
+			"to": [12.6, 6.1, 12.6],
+			"faces": {
+				"north": {"uv": [9, 3.75, 11.25, 4.5], "texture": "#3"},
+				"east": {"uv": [6.75, 3.75, 9, 4.5], "texture": "#3"},
+				"south": {"uv": [13.5, 3.75, 15.75, 4.5], "texture": "#3"},
+				"west": {"uv": [11.25, 3.75, 13.5, 4.5], "texture": "#3"},
+				"up": {"uv": [11.25, 3.75, 9, 1.5], "texture": "#3"},
+				"down": {"uv": [13.5, 1.5, 11.25, 3.75], "texture": "#3"}
+			}
+		},
+		{
+			"name": "cheeseburger",
+			"from": [3.4, -0.1, 3.4],
+			"to": [12.6, 6.1, 12.6],
+			"faces": {
+				"north": {"uv": [2.25, 2.25, 4.5, 3.75], "texture": "#3"},
+				"east": {"uv": [0, 2.25, 2.25, 3.75], "texture": "#3"},
+				"south": {"uv": [6.75, 2.25, 9, 3.75], "texture": "#3"},
+				"west": {"uv": [4.5, 2.25, 6.75, 3.75], "texture": "#3"},
+				"up": {"uv": [4.5, 2.25, 2.25, 0], "texture": "#3"},
+				"down": {"uv": [6.75, 0, 4.5, 2.25], "texture": "#3"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		}
+	]
+}
