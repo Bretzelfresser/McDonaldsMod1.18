@@ -1,6 +1,5 @@
 {
   "credit": "Made with Blockbench",
-  "parent": "cheeseburger",
   "texture_size": [32, 32],
   "textures": {
     "0": "mcdonalds:block/cheeseburger",
