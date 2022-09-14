@@ -20,6 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+import org.openjdk.nashorn.api.tree.BreakTree;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -40,6 +41,22 @@ public class BurgerBox extends ShapedRotatableBlock {
         }
         return BurgerType.CHEESBURGER;
     }
+    public static final Block convert(BurgerType b){
+       switch (b){
+           case BIG_MAC -> {
+               return BlockInit.BIG_MAC.get();
+           }
+           case MC_RYAL_DELUXE -> {
+               return BlockInit.ROYAL_DELUXE.get();
+           }
+           case QUARTER_POUNDER -> {
+               return BlockInit.QUARTER_POUNDER.get();
+           }
+           default -> {
+               return BlockInit.CHEESEBURGER.get();
+           }
+       }
+    }
 
     public static ItemStack getBurger(ItemStack stack) {
         if (stack.hasTag() && stack.getTag().contains("burger"))
@@ -58,6 +75,15 @@ public class BurgerBox extends ShapedRotatableBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if(!level.isClientSide && hand == InteractionHand.MAIN_HAND){
+            if (player.isCrouching() && player.getItemInHand(hand).isEmpty()){
+                if (player.addItem(new ItemStack(BlockInit.BURGER_BOX.get()))){
+                    Block b = convert(state.getValue(TYPE));
+                    level.setBlock(pos, b.defaultBlockState(), 3);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+        }
         return super.use(state, level, pos, player, hand, hit);
     }
 
