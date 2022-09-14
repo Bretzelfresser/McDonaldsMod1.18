@@ -52,6 +52,9 @@ public class FoodInit {
 
     public static final FoodProperties FRIES = new FoodProperties.Builder().nutrition(4)
             .saturationMod(0.5F).build();
+    public static final FoodProperties BURNT_FRIES = new FoodProperties.Builder().nutrition(1)
+            .saturationMod(0.0F).alwaysEat()
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 100, 0), 1.0F).build();
     public static final FoodProperties FRIES_WITH_BOX = new FoodProperties.Builder().nutrition(4)
             .saturationMod(0.5F).build();
     public static final FoodProperties STRIPPED_POTATOES = new FoodProperties.Builder().nutrition(1)

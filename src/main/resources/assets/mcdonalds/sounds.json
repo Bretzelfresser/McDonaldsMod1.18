@@ -4,5 +4,17 @@
     "sounds": [
       "mcdonalds:burger_finished"
     ]
+  },
+  "french_fries": {
+    "subtitle": "sound.mcdonalds.french_fries",
+    "sounds": [
+      "mcdonalds:french_fries"
+    ]
+  },
+  "burger": {
+    "subtitle": "sound.mcdonalds.burger",
+    "sounds": [
+      "mcdonalds:burger"
+    ]
   }
 }

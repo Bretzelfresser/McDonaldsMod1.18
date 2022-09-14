@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -36,5 +37,33 @@ public class PaperBagContainer extends UtilContainer {
     @Override
     public boolean stillValid(Player p_38874_) {
         return true;
+    }
+
+    @Override
+    public ItemStack quickMoveStack(Player player, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        final Slot slot = slots.get(index);
+
+        if (slot != null && slot.hasItem()) {
+            final ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+
+            if (index < 3) {
+                if (!moveItemStackTo(itemstack1, 3, slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!moveItemStackTo(itemstack1, 0, 3, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            slot.onTake(player, itemstack1);
+        }
+        return itemstack;
     }
 }

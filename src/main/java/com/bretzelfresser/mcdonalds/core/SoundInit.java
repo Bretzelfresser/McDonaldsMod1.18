@@ -11,6 +11,8 @@ public class SoundInit {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, McDonalds.MOD_ID);
 
     public static final RegistryObject<SoundEvent> BURGER_FINISHED = register("burger_finished");
+    public static final RegistryObject<SoundEvent> FRENCH_FRIES = register("french_fries");
+    public static final RegistryObject<SoundEvent> BURGER = register("burger");
 
     public static final RegistryObject<SoundEvent> register(String name){
         return SOUNDS.register(name, () -> new SoundEvent(McDonalds.modLoc(name)));

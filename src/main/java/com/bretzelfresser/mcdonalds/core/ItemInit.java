@@ -78,6 +78,8 @@ public class ItemInit {
 
     public static final RegistryObject<Item> FRIES = ITEMS.register("fries",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.FRIES)));
+    public static final RegistryObject<Item> BURNT_FRIES = ITEMS.register("burnt_fries",
+            ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.BURNT_FRIES)));
     public static final RegistryObject<Item> FRIES_WITH_BOX = ITEMS.register("fries_with_box",
             ()-> new ReplaceableItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.FRIES_WITH_BOX), ItemInit.BOX));
     public static final RegistryObject<Item> BOX = ITEMS.register("box",
