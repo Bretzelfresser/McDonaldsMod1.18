@@ -43,7 +43,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                 for (int i = 0; i < 2; i++) {
                     level.addParticle(ParticleTypes.CLOUD, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.02, 0);
                 }
-            }else if(entity.counter > 0 && level.random.nextDouble() < 0.5){
+            } else if (entity.counter > 0 && level.random.nextDouble() < 0.5) {
                 level.addParticle(ParticleTypes.CLOUD, pos.getX() + level.random.nextDouble(), pos.getY() + 1, pos.getZ() + level.random.nextDouble(), 0, 0.02, 0);
             }
         } else {
@@ -66,9 +66,9 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                 }
                 entity.blockUpdate();
             }
-            if (entity.closed) {
-                BurgerMachineRecipe recipe = entity.getRecipe();
-                if (recipe != null) {
+            BurgerMachineRecipe recipe = entity.getRecipe();
+            if (recipe != null) {
+                if (entity.canStart(recipe)) {
                     if (entity.maxBurnCounter > 0 && !entity.isOpening()) {
                         if (entity.inv.getItem(0).isEmpty())
                             entity.resetBurn();
@@ -90,17 +90,21 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                             entity.finishWork(recipe);
                         }
                     }
-                } else {
-                    entity.reset();
-                    entity.resetBurn();
-                    entity.blockUpdate();
                 }
-            }else if (entity.inv.getItem(0).isEmpty()){
+            } else {
                 entity.reset();
                 entity.resetBurn();
                 entity.blockUpdate();
             }
         }
+    }
+
+    protected boolean canStart(BurgerMachineRecipe recipe) {
+        if (!isOpening() && !isClosing()) {
+            McDonalds.LOGGER.info("" + recipe.isNeedsClosing());
+            return !recipe.isNeedsClosing() || this.isClosed();
+        }
+        return false;
     }
 
     private void blockUpdate() {
@@ -128,7 +132,6 @@ public class BurgerMachineBlockEntity extends BlockEntity {
         this.inv.setItem(0, recipe.getResultItem());
         int maxBurnCounter = McDonaldsConfig.TIME_TO_BURN.get();
         reset();
-        this.opening = true;
         this.level.playSound(null, getBlockPos(), SoundInit.BURGER_FINISHED.get(), SoundSource.BLOCKS, 1f, 1f);
         if (maxBurnCounter > 0) {
             this.maxBurnCounter = maxBurnCounter;
@@ -147,7 +150,9 @@ public class BurgerMachineBlockEntity extends BlockEntity {
     private void reset() {
         counter = 0;
         this.maxCounter = 0;
-        this.opening = true;
+        if (isClosed())
+            this.opening = true;
+        blockUpdate();
     }
 
     private void resetBurn() {
@@ -157,7 +162,8 @@ public class BurgerMachineBlockEntity extends BlockEntity {
     }
 
     public void setClosing() {
-        this.closing = true;
+        if (getRecipe() != null && getRecipe().isNeedsClosing())
+            this.closing = true;
     }
 
     @Nullable

@@ -1,5 +1,6 @@
 package com.bretzelfresser.mcdonalds.common.block;
 
+import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.blockentity.BurgerMachineBlockEntity;
 import com.bretzelfresser.mcdonalds.common.recipe.BurgerMachineRecipe;
 import com.bretzelfresser.mcdonalds.common.util.WorldUtils;
@@ -40,6 +41,7 @@ public class BurgerMachine extends BaseEntityBlock{
             BurgerMachineRecipe recipe = worldIn.getRecipeManager().getRecipeFor(RecipeInit.BURGER_RECIPE, new SimpleContainer(held), worldIn).orElse(null);
             BurgerMachineBlockEntity te = WorldUtils.getTileEntity(BurgerMachineBlockEntity.class, worldIn, pos);
             if (te != null){
+                McDonalds.LOGGER.info(player.isCrouching() + "|" + !te.isClosed() + "|" + !te.isOpening() + "|" + !te.getInv().getItem(0).isEmpty());
                 if (player.isCrouching() && !te.isClosed() && !te.isOpening() && !te.getInv().getItem(0).isEmpty()){
                     te.setClosing();
                     worldIn.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);

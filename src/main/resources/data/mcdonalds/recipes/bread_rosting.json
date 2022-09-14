@@ -1,0 +1,14 @@
+{
+  "type": "mcdonalds:burger_recipe",
+  "input": {
+    "item" : "mcdonalds:raw_bread"
+  },
+  "output": {
+    "item": "mcdonalds:bread_crown"
+  },
+  "burnt": {
+    "item": "mcdonalds:burnt_bread"
+  },
+  "burnTime": 200,
+  "needsClosing": false
+}

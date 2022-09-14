@@ -44,15 +44,15 @@ public class Fryer extends RotatableBlock implements EntityBlock {
             FryerBlockEntity te = WorldUtils.getTileEntity(FryerBlockEntity.class, level, pos);
             if (te != null) {
                 ItemStack held = player.getItemInHand(hand);
-                if (held.isEmpty() && !te.getInv().getStackInSlot(1).isEmpty()) {
-                    if (player.addItem(te.getInv().getStackInSlot(1))) {
-                        te.getInv().setStackInSlot(1, ItemStack.EMPTY);
+                if (held.isEmpty() && !te.getInv().getStackInSlot(0).isEmpty()) {
+                    if (player.addItem(te.getInv().getStackInSlot(0))) {
+                        te.getInv().setStackInSlot(0, ItemStack.EMPTY);
                         return InteractionResult.SUCCESS;
                     }
                 }
                 if (level.getRecipeManager().getRecipeFor(RecipeInit.FRYER_RECIPE, new SimpleContainer(held), level).isPresent()) {
                     ItemStack remainder = te.getInv().insertItem(0, held, false);
-                    if (!player.isCreative())
+                    if (!player.isCreative() && !ItemStack.matches(remainder, held))
                         player.setItemInHand(hand, remainder);
                     return InteractionResult.SUCCESS;
                 }

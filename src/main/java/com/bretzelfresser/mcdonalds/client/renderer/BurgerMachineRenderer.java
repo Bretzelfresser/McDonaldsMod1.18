@@ -30,7 +30,7 @@ public class BurgerMachineRenderer implements BlockEntityRenderer<BurgerMachineB
 
     @Override
     public void render(BurgerMachineBlockEntity entity, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLightIn, int combinedOverlayIn) {
-        if (entity != null){
+        if (entity != null) {
             Minecraft mc = Minecraft.getInstance();
             poseStack.pushPose();
             float rotation = 0;
@@ -48,13 +48,14 @@ public class BurgerMachineRenderer implements BlockEntityRenderer<BurgerMachineB
                 default:
                     break;
             }
-            if (!entity.getInv().getItem(0).isEmpty()){
-                RenderUtil.renderItem(entity.getInv().getItem(0), new double[]{0.5, 1.01, 0.5}, Vector3f.YP.rotationDegrees(rotation), poseStack, bufferSource, combinedOverlayIn, RenderUtil.getLightLevel(mc.level, entity.getBlockPos()), 0.5f);
+            if (!entity.getInv().getItem(0).isEmpty()) {
+                RenderUtil.renderItem(entity.getInv().getItem(0), new double[]{0.4, 1.01, 0.5}, Vector3f.YP.rotationDegrees(rotation), poseStack, bufferSource, combinedOverlayIn, RenderUtil.getLightLevel(mc.level, entity.getBlockPos()), 0.5f);
             }
             model.Top.xRot = (float) Math.toRadians(entity.getDegrees());
-            poseStack.translate(0.5f, -0.35, 0.5f);
+            float add = 0.1f * (entity.getDegrees() / (float) BurgerMachineBlockEntity.MAX_DEGREES);
+            poseStack.translate(0.475f, -0.35 - add, 0.5f);
             poseStack.mulPose(Vector3f.YN.rotationDegrees(rotation));
-            this.model.renderToBuffer(poseStack, bufferSource.getBuffer(model.renderType(MODEL_TEXTURE)), RenderUtil.getLightLevel(mc.level, entity.getBlockPos().above()), combinedOverlayIn, 1,1,1,1f);
+            this.model.renderToBuffer(poseStack, bufferSource.getBuffer(model.renderType(MODEL_TEXTURE)), RenderUtil.getLightLevel(mc.level, entity.getBlockPos().above()), combinedOverlayIn, 1, 1, 1, 1f);
             poseStack.popPose();
         }
     }

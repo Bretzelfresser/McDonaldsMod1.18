@@ -1,10 +1,8 @@
 package com.bretzelfresser.mcdonalds.core;
 
 import com.bretzelfresser.mcdonalds.McDonalds;
-import com.bretzelfresser.mcdonalds.common.block.Burger;
-import com.bretzelfresser.mcdonalds.common.block.BurgerMachine;
-import com.bretzelfresser.mcdonalds.common.block.ChoppingBoard;
-import com.bretzelfresser.mcdonalds.common.block.Fryer;
+import com.bretzelfresser.mcdonalds.common.block.*;
+import com.bretzelfresser.mcdonalds.common.item.BurgerBoxItem;
 import com.bretzelfresser.mcdonalds.core.util.ModCreativeTab;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.food.FoodProperties;
@@ -29,6 +27,7 @@ public class BlockInit {
     public static final RegistryObject<ChoppingBoard> COPPING_BOARD = register("chopping_board", ChoppingBoard::new, ModCreativeTab.MC_DONALDS_TAB);
     public static final RegistryObject<BurgerMachine> BURGER_MACHINE = register("burger_machine", BurgerMachine::new, ModCreativeTab.MC_DONALDS_TAB);
     public static final RegistryObject<Fryer> FRYER = register("fryer", Fryer::new, ModCreativeTab.MC_DONALDS_TAB);
+    public static final RegistryObject<BurgerBox> BURGER_BOX = register("burger_box", () -> new BurgerBox(BlockBehaviour.Properties.of(Material.WOOD).strength(3).noOcclusion()), BurgerBoxItem::new);
 
     public static final RegistryObject<Burger> QUARTER_POUNDER = register("quarter_pounder",
             () -> new Burger(BlockBehaviour.Properties.of(Material.CAKE).sound(SoundType.WOOL).noOcclusion().instabreak(), Burger.makeQuarterPounderShape()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.QUARTER_POUNDER));
@@ -40,6 +39,8 @@ public class BlockInit {
             () -> new Burger(BlockBehaviour.Properties.of(Material.CAKE).sound(SoundType.WOOL).noOcclusion().instabreak(), Burger.makeCheeseBurger()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.CHEESE_BURGER));
     public static final RegistryObject<Burger> ROYAL_DELUXE = register("royal_deluxe",
             () -> new Burger(BlockBehaviour.Properties.of(Material.CAKE).sound(SoundType.WOOL).noOcclusion().instabreak(), Burger.makeMcRoyalDeluxe()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MC_ROYAL_DELUXE));
+
+
     public static final <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, CreativeModeTab tab){
         return register(name, blockSupplier, new Item.Properties().tab(tab));
     }

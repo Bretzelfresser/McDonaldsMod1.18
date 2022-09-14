@@ -42,5 +42,7 @@
   "block.mcdonalds.fryer": "Fryer",
   "block.mcdonalds.quarter_pounder": "Quarter Pounder",
 
-  "container.mcdonalds.paper_bag": "Paper Bag"
+  "container.mcdonalds.paper_bag": "Paper Bag",
+
+  "tooltip.mcdonalds.burgerbox.burger": "Burger: "
 }

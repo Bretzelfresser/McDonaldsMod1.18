@@ -37,9 +37,7 @@ public class FryerRenderer implements BlockEntityRenderer<FryerBlockEntity> {
                     break;
             }
             if (!te.getInv().getStackInSlot(0).isEmpty())
-                RenderUtil.renderItem(te.getInv().getStackInSlot(0), new double[]{0.53,0.85,0.55f}, Vector3f.YP.rotation(rotation), matrixStack, source,combinedOverlay,  RenderUtil.getLightLevel(Minecraft.getInstance().level, te.getBlockPos().above()), 0.2f);
-            if (!te.getInv().getStackInSlot(1).isEmpty())
-                RenderUtil.renderItem(te.getInv().getStackInSlot(1), new double[]{0.35,0.85,0.45f}, Vector3f.YP.rotation(rotation), matrixStack, source,combinedOverlay,  RenderUtil.getLightLevel(Minecraft.getInstance().level, te.getBlockPos().above()), 0.2f);
+                RenderUtil.renderItem(te.getInv().getStackInSlot(0), new double[]{0.5,0.85,0.5f}, Vector3f.YP.rotation(rotation), matrixStack, source,combinedOverlay,  RenderUtil.getLightLevel(Minecraft.getInstance().level, te.getBlockPos().above()), 0.3f);
         }
     }
 }

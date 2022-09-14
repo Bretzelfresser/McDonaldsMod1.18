@@ -1,20 +1,21 @@
 package com.bretzelfresser.mcdonalds.common.blockentity;
 
-import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.block.Fryer;
 import com.bretzelfresser.mcdonalds.common.recipe.FryerRecipe;
 import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
 import com.bretzelfresser.mcdonalds.core.RecipeInit;
+import com.bretzelfresser.mcdonalds.core.SoundInit;
 import com.bretzelfresser.mcdonalds.core.config.McDonaldsConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -25,8 +26,8 @@ import java.util.Comparator;
 public class FryerBlockEntity extends BlockEntity {
 
 
-    private int itemsFried = 0, counter = 0, maxCounter = 0;
-    private ItemStackHandler inv = new ItemStackHandler(2) {
+    private int itemsFried = 0, counter = 0, maxCounter = 0, prevCounter = -43;
+    private ItemStackHandler inv = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
@@ -36,7 +37,7 @@ public class FryerBlockEntity extends BlockEntity {
 
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
-            return 1;
+            return 32;
         }
     };
 
@@ -59,17 +60,23 @@ public class FryerBlockEntity extends BlockEntity {
                 blockUpdate();
             } else
                 reset();
+        }else{
+            if (counter > 0 && counter < maxCounter){
+                BlockPos pos = getBlockPos();
+                level.addParticle(ParticleTypes.CLOUD, pos.getX() + level.random.nextDouble()*0.6, pos.getY() + 1, pos.getZ() + level.random.nextDouble()*0.6, 0, 0.02, 0);
+            }
         }
     }
 
     protected void reset() {
         this.counter = 0;
         this.maxCounter = 0;
+        prevCounter = -43;
     }
 
     protected boolean canProcess(FryerRecipe recipe) {
         if (hasEnoughOil() && getBlockState().getValue(Fryer.BASKET)) {
-            return inv.getStackInSlot(1).isEmpty() || (inv.getStackInSlot(1).getItem() == recipe.getResultItem().getItem() && inv.getStackInSlot(1).getCount() + recipe.getResultItem().getCount() * inv.getStackInSlot(0).getCount() <= recipe.getResultItem().getMaxStackSize());
+            return true;
         }
         return false;
     }
@@ -80,15 +87,16 @@ public class FryerBlockEntity extends BlockEntity {
 
     protected void process(FryerRecipe recipe) {
         this.counter++;
+        if (counter - prevCounter >= 42) {
+            level.playSound(null, getBlockPos(), SoundInit.FRENCH_FRIES.get(), SoundSource.BLOCKS, 1f, 1f);
+            prevCounter = counter;
+        }
     }
 
     protected void finishProcessing(FryerRecipe recipe) {
-        inv.getStackInSlot(0).shrink(1);
-        if (inv.getStackInSlot(1).isEmpty()){
-            inv.setStackInSlot(1, recipe.getResultItem().copy());
-        }else {
-            inv.getStackInSlot(1).grow(recipe.getResultItem().getCount());
-        }
+        ItemStack result = recipe.getResultItem().copy();
+        result.setCount(inv.getStackInSlot(0).getCount());
+        inv.setStackInSlot(0, result);
         increaseItemsFried();
         reset();
     }
@@ -131,6 +139,7 @@ public class FryerBlockEntity extends BlockEntity {
         tag.put("items", this.inv.serializeNBT());
         tag.putInt("counter", this.counter);
         tag.putInt("maxCounter", this.maxCounter);
+        tag.putInt("prevCounter", this.prevCounter);
     }
 
     @Override
@@ -140,6 +149,7 @@ public class FryerBlockEntity extends BlockEntity {
         this.inv.deserializeNBT(tag.getCompound("items"));
         this.counter = tag.getInt("counter");
         this.maxCounter = tag.getInt("maxCounter");
+        this.prevCounter = tag.getInt("prevCounter");
     }
 
     protected void blockUpdate(){

@@ -24,19 +24,25 @@ public class BurgerMachineRecipe implements Recipe<Container> {
     private final Ingredient input;
     private final ItemStack output, burnt;
     private final int burnTime;
+    private final boolean needsClosing;
     private final ResourceLocation id;
 
-    public BurgerMachineRecipe(Ingredient input, ItemStack output, ItemStack burnt, int burnTime, ResourceLocation id) {
+    public BurgerMachineRecipe(Ingredient input, ItemStack output, ItemStack burnt, int burnTime, boolean needsClosing, ResourceLocation id) {
         this.input = input;
         this.output = output;
         this.burnt = burnt;
         this.burnTime = burnTime;
+        this.needsClosing = needsClosing;
         this.id = id;
     }
 
     @Override
     public boolean matches(Container inv, Level worldIn) {
         return input.test(inv.getItem(0)) || inv.getItem(0).getItem() == output.getItem();
+    }
+
+    public boolean isNeedsClosing() {
+        return needsClosing;
     }
 
     @Override
@@ -94,7 +100,8 @@ public class BurgerMachineRecipe implements Recipe<Container> {
             ItemStack output = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "output"), true);
             ItemStack burnt = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "burnt"), true);
             int burnTime = GsonHelper.getAsInt(json, "burnTime", 200);
-            return new BurgerMachineRecipe(input, output, burnt, burnTime,recipeId);
+            boolean needsClosing = GsonHelper.getAsBoolean(json, "needsClosing", true);
+            return new BurgerMachineRecipe(input, output, burnt, burnTime, needsClosing, recipeId);
         }
 
         @Nullable
@@ -104,7 +111,8 @@ public class BurgerMachineRecipe implements Recipe<Container> {
             ItemStack output = buffer.readItem();
             ItemStack burnt = buffer.readItem();
             int burnTime = buffer.readInt();
-            return new BurgerMachineRecipe(input, output, burnt, burnTime, recipeId);
+            boolean needsClosing = buffer.readBoolean();
+            return new BurgerMachineRecipe(input, output, burnt, burnTime, needsClosing, recipeId);
         }
 
         @Override
@@ -113,6 +121,7 @@ public class BurgerMachineRecipe implements Recipe<Container> {
             buffer.writeItem(recipe.output);
             buffer.writeItem(recipe.burnt);
             buffer.writeInt(recipe.burnTime);
+            buffer.writeBoolean(recipe.needsClosing);
         }
     }
 }

@@ -3,8 +3,8 @@
 	"parent": "box",
 	"texture_size": [64, 64],
 	"textures": {
-		"3": "quarter_pound_box",
-		"particle": "big_mac_box"
+		"3": "mcdonalds:block/burger_box/big_mac_box",
+		"particle": "mcdonalds:block/burger_box/big_mac_box"
 	},
 	"elements": [
 		{
