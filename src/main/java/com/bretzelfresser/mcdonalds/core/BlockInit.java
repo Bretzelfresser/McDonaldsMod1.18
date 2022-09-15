@@ -41,6 +41,24 @@ public class BlockInit {
             () -> new Burger(BlockBehaviour.Properties.of(Material.CAKE).sound(SoundType.WOOL).noOcclusion().instabreak(), Burger.makeMcRoyalDeluxe()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MC_ROYAL_DELUXE));
 
 
+    public static final RegistryObject<Block> KETCHUP_BOTTLE = register("ketchup_bottle",
+            () -> new SauceBottle(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.WOOD).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+    public static final RegistryObject<Block> MAYO_BOTTLE = register("mayo_bottle",
+            () -> new SauceBottle(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.WOOD).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+    public static final RegistryObject<Block> MUSTARD_BOTTLE = register("mustard_bottle",
+            () -> new SauceBottle(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.WOOD).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+
+    public static final RegistryObject<Block> KETCHUP_BOWL = register("ketchup_bowl",
+            () -> new SauceBowl(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.GLASS).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+    public static final RegistryObject<Block> MAYO_BOWL = register("mayo_bowl",
+            () -> new SauceBowl(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.GLASS).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+    public static final RegistryObject<Block> MUSTARD_BOWL = register("mustard_bowl",
+            () -> new SauceBowl(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.GLASS).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+    public static final RegistryObject<Block> BIG_MAC_BOWL = register("big_mac_bowl",
+            () -> new SauceBowl(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.GLASS).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+    public static final RegistryObject<Block> EMPTY_BOWL = register("empty_bowl",
+            () -> new SauceBowl(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.GLASS).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
+
     public static final <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, CreativeModeTab tab){
         return register(name, blockSupplier, new Item.Properties().tab(tab));
     }

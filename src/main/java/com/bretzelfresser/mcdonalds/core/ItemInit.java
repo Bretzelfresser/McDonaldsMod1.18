@@ -67,15 +67,6 @@ public class ItemInit {
     public static final RegistryObject<Item> TOMATO_SLICE = ITEMS.register("tomato_slice",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.TOMATO_SLICE)));
 
-    public static final RegistryObject<Item> MAYONNAISE = ITEMS.register("mayonnaise",
-            ()-> new ReplaceableItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MAYONNAISE), ItemInit.BOWL));
-    public static final RegistryObject<Item> MUSTARD = ITEMS.register("mustard",
-            ()-> new ReplaceableItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.MUSTARD), ItemInit.BOWL));
-    public static final RegistryObject<Item> KETCHUP = ITEMS.register("ketchup",
-            ()-> new ReplaceableItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.KETCHUP), ItemInit.BOWL));
-    public static final RegistryObject<Item> BIG_MAC_SAUCE = ITEMS.register("big_mac_sauce",
-            ()-> new ReplaceableItem(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.BIG_MAC_SAUCE), ItemInit.BOWL));
-
     public static final RegistryObject<Item> FRIES = ITEMS.register("fries",
             ()-> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).food(FoodInit.FRIES)));
     public static final RegistryObject<Item> BURNT_FRIES = ITEMS.register("burnt_fries",
@@ -91,17 +82,9 @@ public class ItemInit {
             () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
 
     public static final RegistryObject<Item> PAPER_BAG = ITEMS.register("paper_bag", PaperBag::new);
-    public static final RegistryObject<Item> BOWL = ITEMS.register("bowl",
-            () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).stacksTo(16)));
 
     public static final RegistryObject<Item> BASKET = ITEMS.register("basket",
             () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB).stacksTo(1).fireResistant()));
-    public static final RegistryObject<Item> KETCHUP_BOTTLE = ITEMS.register("ketchup_bottle",
-            () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
-    public static final RegistryObject<Item> MAYO_BOTTLE = ITEMS.register("mayo_bottle",
-            () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
-    public static final RegistryObject<Item> MUSTARD_BOTTLE = ITEMS.register("mustard_bottle",
-            () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
     public static final RegistryObject<Item> OIL = ITEMS.register("oil",
             () -> new Item(new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB)));
 

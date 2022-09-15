@@ -25,9 +25,6 @@ public class FoodInit {
 
     public static final FoodProperties AMERICAN_CHEESE = new FoodProperties.Builder().nutrition(2)
             .saturationMod(0.3F).build();
-    public static final FoodProperties BIG_MAC_SAUCE = new FoodProperties.Builder().nutrition(1)
-            .saturationMod(0.1F).fast().build();
-
     public static final FoodProperties PICKLES = new FoodProperties.Builder().nutrition(1)
             .saturationMod(0.3F).build();
     public static final FoodProperties ONION = new FoodProperties.Builder().nutrition(2)
@@ -43,12 +40,14 @@ public class FoodInit {
     public static final FoodProperties TOMATO_SLICE = new FoodProperties.Builder().nutrition(3)
             .saturationMod(0.4F).build();
 
-    public static final FoodProperties MAYONNAISE = new FoodProperties.Builder().nutrition(1)
+    /*public static final FoodProperties MAYONNAISE = new FoodProperties.Builder().nutrition(1)
             .saturationMod(0.1F).fast().build();
     public static final FoodProperties MUSTARD = new FoodProperties.Builder().nutrition(1)
             .saturationMod(0.1F).fast().build();
     public static final FoodProperties KETCHUP = new FoodProperties.Builder().nutrition(1)
             .saturationMod(0.1F).fast().build();
+    public static final FoodProperties BIG_MAC_SAUCE = new FoodProperties.Builder().nutrition(1)
+            .saturationMod(0.1F).fast().build();*/
 
     public static final FoodProperties FRIES = new FoodProperties.Builder().nutrition(4)
             .saturationMod(0.5F).build();

@@ -13,6 +13,16 @@
   "item.mcdonalds.bread_base": "Base Bread",
   "item.mcdonalds.bread_simple": "Simple Bread",
 
+  "item.mcdonalds.raw_bread": "Raw Crown Bread",
+  "item.mcdonalds.raw_bread_middle": "Raw Middle Bread",
+  "item.mcdonalds.raw_bread_bottom": "Raw Base Bread",
+  "item.mcdonalds.raw_bread_2": "Raw Simple Bread",
+
+  "item.mcdonalds.burnt_bread": "Burnt Crown Bread",
+  "item.mcdonalds.burnt_bread_2": "Burnt Simple Bread",
+  "item.mcdonalds.burnt_bread_bottom": "Burnt Base Bread",
+  "item.mcdonalds.burnt_bread_middle": "Burnt Middle Bread",
+
   "item.mcdonalds.american_cheese": "American Cheese",
   "item.mcdonalds.pickles": "Pickles",
   "item.mcdonalds.onion": "Onion",
@@ -31,16 +41,32 @@
   "item.mcdonalds.fries_with_box": "Fries with Box",
   "item.mcdonalds.box": "Box",
   "item.mcdonalds.stripped_potatoes": "Stripped Potatoes",
+  "item.mcdonalds.burnt_fries": "Burnt Fries",
 
   "item.mcdonalds.spatula": "Spatula",
   "item.mcdonalds.paper_bag": "Paper Bag",
   "item.mcdonalds.bowl": "Bowl",
 
+  "item.mcdonalds.basket": "Basket",
+
+  "block.mcdonalds.ketchup_bottle": "Ketchup Bottle",
+  "block.mcdonalds.mayo_bottle": "Mayo Bottle",
+  "block.mcdonalds.mustard_bottle": "Mustard Bottle",
+
+  "item.mcdonalds.oil": "Oil",
+
+  "item.mcdonalds.soda": "Soda",
+  "item.mcdonalds.empty_soda": "Empty Soda",
 
   "block.mcdonalds.chopping_board": "Chopping Board",
   "block.mcdonalds.burger_machine": "Burger Machine",
   "block.mcdonalds.fryer": "Fryer",
   "block.mcdonalds.quarter_pounder": "Quarter Pounder",
+  "block.mcdonalds.cheeseburger": "Cheeseburger",
+  "block.mcdonalds.big_mac": "Big Mac",
+  "block.mcdonalds.royal_deluxe": "Mc Royal Deluxe",
+
+  "block.mcdonalds.burger_box": "Cheeseburger Box",
 
   "container.mcdonalds.paper_bag": "Paper Bag",
 

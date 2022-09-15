@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.IItemHandler;
@@ -33,6 +34,9 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
 public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
+
+    //private static final VoxelShape SHAPE = makeShape();
+
     public ChoppingBoard() {
         super(BlockBehaviour.Properties.of(Material.WOOD).strength(2, 3).noOcclusion().requiresCorrectToolForDrops(), makeShape());
     }
@@ -73,6 +77,11 @@ public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
         }
         return InteractionResult.PASS;
     }
+
+    /*@Override
+    public VoxelShape getShape(BlockState state, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+        return SHAPE;
+    }*/
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {

@@ -13,6 +13,16 @@
   "item.mcdonalds.bread_base": "Pan base",
   "item.mcdonalds.bread_simple": "Corona de Hamburguesa con queso",
 
+  "item.mcdonalds.raw_bread": "Corona sin calentar",
+  "item.mcdonalds.raw_bread_middle": "Pan medio sin calentar",
+  "item.mcdonalds.raw_bread_bottom": "Pan base sin calentar",
+  "item.mcdonalds.raw_bread_2": "Corona de Hamburguesa con queso sin calentar",
+
+  "item.mcdonalds.burnt_bread": "Corona quemada",
+  "item.mcdonalds.burnt_bread_2": "Corona de Hamburguesa con queso quemada",
+  "item.mcdonalds.burnt_bread_bottom": "Pan base quemado",
+  "item.mcdonalds.burnt_bread_middle": "Pan medio quemado",
+
   "item.mcdonalds.american_cheese": "Queso americano",
   "item.mcdonalds.pickles": "Pepinillos",
   "item.mcdonalds.onion": "Cebolla",
@@ -31,16 +41,32 @@
   "item.mcdonalds.fries_with_box": "Papas fritas en caja",
   "item.mcdonalds.box": "Caja",
   "item.mcdonalds.stripped_potatoes": "Tiras de papas crudas",
+  "item.mcdonalds.burnt_fries": "Papas fritas quemadas",
 
   "item.mcdonalds.spatula": "Espatula",
   "item.mcdonalds.paper_bag": "Bolsa de papel",
   "item.mcdonalds.bowl": "Cuenco",
 
+  "item.mcdonalds.basket": "Canasta de freir",
+
+  "block.mcdonalds.ketchup_bottle": "Botella de Ketchup",
+  "block.mcdonalds.mayo_bottle": "Botella de Mayonesa",
+  "block.mcdonalds.mustard_bottle": "Botella de Mostaza",
+
+  "item.mcdonalds.oil": "Aceite",
+
+  "item.mcdonalds.soda": "Bebida",
+  "item.mcdonalds.empty_soda": "Vaso vacio",
 
   "block.mcdonalds.chopping_board": "Tabla de picar",
   "block.mcdonalds.burger_machine": "Maquina de Hamburguesas",
   "block.mcdonalds.fryer": "Freidora",
   "block.mcdonalds.quarter_pounder": "Cuarto de Libra",
+  "block.mcdonalds.cheeseburger": "Hamburguesa con queso",
+  "block.mcdonalds.big_mac": "Big Mac",
+  "block.mcdonalds.royal_deluxe": "Mc Royal Deluxe",
+
+  "block.mcdonalds.burger_box": "Caja de Hamburgeusa con queso",
 
   "container.mcdonalds.paper_bag": "Bolsa de Papel"
 }
