@@ -1,0 +1,65 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "box_cheeseburger",
+	"texture_size": [64, 64],
+	"textures": {
+		"1": "mcdonalds:block/burger_box/cheeseburger_box",
+		"particle": "mcdonalds:block/burger_box/cheeseburger_box"
+	},
+	"elements": [
+		{
+			"name": "cheeseburger",
+			"from": [3.5, 0, 3.5],
+			"to": [12.5, 0.05, 12.5],
+			"faces": {
+				"north": {"uv": [2.25, 2.25, 4.5, 3.75], "texture": "#1"},
+				"east": {"uv": [0, 2.25, 2.25, 3.75], "texture": "#1"},
+				"south": {"uv": [6.75, 2.25, 9, 3.75], "texture": "#1"},
+				"west": {"uv": [4.5, 2.25, 6.75, 3.75], "texture": "#1"},
+				"up": {"uv": [4.5, 2.25, 2.25, 0], "texture": "#1"},
+				"down": {"uv": [6.75, 0, 4.5, 2.25], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [61.5, 0, 0],
+			"translation": [0, 3.75, 4.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [61.5, 0, 0],
+			"translation": [0, 3.75, 4.5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_righthand": {
+			"rotation": [88, 11, -36.31],
+			"translation": [12.5, 2, 4.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [88, 11, -36.31],
+			"translation": [12.5, 2, 4.5]
+		},
+		"ground": {
+			"translation": [0, 5, 0]
+		},
+		"gui": {
+			"rotation": [0, 50, 70],
+			"translation": [-5.5, 3.5, 0],
+			"scale": [1.2, 1.2, 1.2]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -10.5],
+			"scale": [1.2, 1.2, 1.2]
+		}
+	},
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0]
+		}
+	]
+}

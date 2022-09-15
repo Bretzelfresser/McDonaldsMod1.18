@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mcdonalds:burger_box"
+    },
+    {
+      "item": "mcdonalds:royal_deluxe"
+    }
+  ],
+  "result": {
+    "item": "mcdonalds:burger_box",
+    "nbt": "{burger:{Count:1b,id:\"mcdonalds:royal_deluxe\"}}"
+  }
+}

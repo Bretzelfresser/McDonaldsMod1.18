@@ -19,7 +19,7 @@ public class Burger extends ShapedBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!level.isClientSide() && player.isShiftKeyDown()){
+        if (!level.isClientSide() && player.isShiftKeyDown() && hand == InteractionHand.MAIN_HAND){
             if (player.addItem(this.asItem().getDefaultInstance())){
                 level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
                 return InteractionResult.SUCCESS;

@@ -31,12 +31,4 @@ public class BurgerBoxItem extends BlockItem {
         }
         super.appendHoverText(stack, p_40573_, tooltip, flags);
     }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (!level.isClientSide() && player.isCrouching()){
-            player.sendMessage(new TextComponent("Burger: ").append(BurgerBox.getBurger(player.getItemInHand(hand)).getDisplayName()), player.getUUID());
-        }
-        return super.use(level, player, hand);
-    }
 }

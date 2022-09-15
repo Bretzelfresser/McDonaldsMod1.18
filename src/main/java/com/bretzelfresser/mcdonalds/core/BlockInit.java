@@ -59,6 +59,11 @@ public class BlockInit {
     public static final RegistryObject<Block> EMPTY_BOWL = register("empty_bowl",
             () -> new SauceBowl(BlockBehaviour.Properties.of(Material.DECORATION).sound(SoundType.GLASS).noOcclusion()), new Item.Properties().tab(ModCreativeTab.MC_DONALDS_TAB));
 
+    public static final RegistryObject<Block> OPEN_CHEESBURGER_BOX = register("open_cheesburger_box", () -> new RotatableBlock(BlockBehaviour.Properties.of(Material.CACTUS).instabreak().noOcclusion()), ModCreativeTab.MC_DONALDS_TAB);
+    public static final RegistryObject<Block> OPEN_BIG_MAC_BOX = register("open_big_mac_box", () -> new RotatableBlock(BlockBehaviour.Properties.of(Material.CACTUS).instabreak().noOcclusion()), ModCreativeTab.MC_DONALDS_TAB);
+    public static final RegistryObject<Block> OPEN_RYAL_DELUXE_BOX = register("open_royal_deluxe_box", () -> new RotatableBlock(BlockBehaviour.Properties.of(Material.CACTUS).instabreak().noOcclusion()), ModCreativeTab.MC_DONALDS_TAB);
+    public static final RegistryObject<Block> OPEN_QUARTER_POUNDER_BOX = register("open_quarter_pounder_box", () -> new RotatableBlock(BlockBehaviour.Properties.of(Material.CACTUS).instabreak().noOcclusion()), ModCreativeTab.MC_DONALDS_TAB);
+
     public static final <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, CreativeModeTab tab){
         return register(name, blockSupplier, new Item.Properties().tab(tab));
     }

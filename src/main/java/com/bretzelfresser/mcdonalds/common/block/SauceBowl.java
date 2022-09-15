@@ -25,7 +25,7 @@ public class SauceBowl extends Block {
     public static VoxelShape makeShape(){
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, Shapes.box(0.2812500000000001, 0, 0.2812499999999999, 0.7187500000000001, 0.3125, 0.7187499999999999), BooleanOp.OR);
-        shape = Shapes.join(shape, Shapes.box(0.7187500000000001, 0.3125, 0.7187499999999999, 0.2812500000000001, 0, 0.2812499999999999), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.2812500000000001, 0, 0.2812499999999999, 0.7187500000000001, 0.3125, 0.7187499999999999), BooleanOp.OR);
         shape = Shapes.join(shape, Shapes.box(0.2812500000000001, 0.3125, 0.2812499999999999, 0.7187500000000001, 0.3125, 0.7187499999999999), BooleanOp.OR);
 
         return shape;

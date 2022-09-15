@@ -26,6 +26,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeBurgerBox();
         simpleBlockItem(BlockInit.BURGER_BOX.get(), existingBlock("burger_box/box_cheeseburger"));
         makeFryer();
+        horizontalBlock(BlockInit.OPEN_QUARTER_POUNDER_BOX.get(), existingBlock("burger_box/open_box_quarterpound"));
+        simpleBlockItem(BlockInit.OPEN_QUARTER_POUNDER_BOX.get(), existingBlock("burger_box/open_box_quarterpound"));
+        horizontalBlock(BlockInit.OPEN_RYAL_DELUXE_BOX.get(),  existingBlock("burger_box/open_box_mcroyaldeluxe"));
+        simpleBlockItem(BlockInit.OPEN_RYAL_DELUXE_BOX.get(), existingBlock("burger_box/open_box_mcroyaldeluxe"));
+        horizontalBlock(BlockInit.OPEN_CHEESBURGER_BOX.get(), existingBlock("burger_box/open_box_cheeseburger"));
+        simpleBlockItem(BlockInit.OPEN_CHEESBURGER_BOX.get(), existingBlock("burger_box/open_box_cheeseburger"));
+        horizontalBlock(BlockInit.OPEN_BIG_MAC_BOX.get(), existingBlock("burger_box/open_box_big_mac"));
+        simpleBlockItem(BlockInit.OPEN_BIG_MAC_BOX.get(), existingBlock("burger_box/open_box_big_mac"));
     }
 
     private void makeFryer(){
@@ -58,7 +66,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 case CHEESBURGER -> name += "cheeseburger";
                 case BIG_MAC -> name += "big_mac";
                 case MC_RYAL_DELUXE -> name += "mc_royal_box";
-                default -> name += "quarter_pounder";
+                case QUARTER_POUNDER -> name += "quarter_pounder";
+                default -> name += "none";
             }
             builder.modelFile(existingBlock(name));
             builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);

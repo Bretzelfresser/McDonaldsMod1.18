@@ -102,8 +102,7 @@ public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
     }
 
     public static VoxelShape makeShape() {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.or(shape, Shapes.create(0.4375, 0, 0.0625, 0.5625, 0.0625, 0.125));
+        VoxelShape shape = Shapes.or(Shapes.empty(), Shapes.create(0.4375, 0, 0.0625, 0.5625, 0.0625, 0.125));
         shape = Shapes.or(shape, Shapes.create(0.1875, 0, 0.0625, 0.4375, 0.0625, 0.1875));
         shape = Shapes.or(shape, Shapes.create(0.5625, 0, 0.0625, 0.8125, 0.0625, 0.1875));
         shape = Shapes.or(shape, Shapes.create(0.1875, 0, 0.1875, 0.8125, 0.0625, 0.9375));
