@@ -101,7 +101,6 @@ public class BurgerMachineBlockEntity extends BlockEntity {
 
     protected boolean canStart(BurgerMachineRecipe recipe) {
         if (!isOpening() && !isClosing()) {
-            McDonalds.LOGGER.info("" + recipe.isNeedsClosing());
             return !recipe.isNeedsClosing() || this.isClosed();
         }
         return false;

@@ -51,9 +51,10 @@ public class BurgerMachineRenderer implements BlockEntityRenderer<BurgerMachineB
             if (!entity.getInv().getItem(0).isEmpty()) {
                 RenderUtil.renderItem(entity.getInv().getItem(0), new double[]{0.4, 1.01, 0.5}, Vector3f.YP.rotationDegrees(rotation), poseStack, bufferSource, combinedOverlayIn, RenderUtil.getLightLevel(mc.level, entity.getBlockPos()), 0.5f);
             }
-            model.Top.xRot = (float) Math.toRadians(entity.getDegrees());
-            float add = 0.1f * (entity.getDegrees() / (float) BurgerMachineBlockEntity.MAX_DEGREES);
-            poseStack.translate(0.475f, -0.35 - add, 0.5f);
+
+            model.Top.xRot = (float) Math.toRadians(180 - entity.getDegrees());
+            model.Top.yRot = (float) Math.toRadians(180);
+            poseStack.translate(0.475f, -0.5, 0.5f);
             poseStack.mulPose(Vector3f.YN.rotationDegrees(rotation));
             this.model.renderToBuffer(poseStack, bufferSource.getBuffer(model.renderType(MODEL_TEXTURE)), RenderUtil.getLightLevel(mc.level, entity.getBlockPos().above()), combinedOverlayIn, 1, 1, 1, 1f);
             poseStack.popPose();
