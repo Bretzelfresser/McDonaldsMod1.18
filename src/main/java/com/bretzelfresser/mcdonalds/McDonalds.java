@@ -4,6 +4,8 @@ import com.bretzelfresser.mcdonalds.client.renderer.BurgerMachineRenderer;
 import com.bretzelfresser.mcdonalds.client.renderer.ChoppingRenderer;
 import com.bretzelfresser.mcdonalds.client.renderer.FryerRenderer;
 import com.bretzelfresser.mcdonalds.client.screens.PaperBagScreen;
+import com.bretzelfresser.mcdonalds.common.block.Burger;
+import com.bretzelfresser.mcdonalds.common.block.BurgerBox;
 import com.bretzelfresser.mcdonalds.core.*;
 import com.bretzelfresser.mcdonalds.core.config.McDonaldsConfig;
 import com.bretzelfresser.mcdonalds.core.datagen.DataGatherer;
@@ -13,7 +15,9 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -37,13 +41,12 @@ import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(McDonalds.MOD_ID)
-public class McDonalds
-{
+public class McDonalds {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "mcdonalds";
 
-    public static final ResourceLocation modLoc(String name){
+    public static final ResourceLocation modLoc(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
 
@@ -68,13 +71,23 @@ public class McDonalds
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-      BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
-      BlockEntityRenderers.register(BlockEntityInit.BURGER_MACHINE.get(), BurgerMachineRenderer::new);
-      BlockEntityRenderers.register(BlockEntityInit.FRYER.get(), FryerRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.BURGER_MACHINE.get(), BurgerMachineRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.FRYER.get(), FryerRenderer::new);
 
-      ItemBlockRenderTypes.setRenderLayer(BlockInit.FRYER.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.FRYER.get(), RenderType.translucent());
 
-      MenuScreens.register(ContainerInit.PAPER_BAG.get(), PaperBagScreen::new);
+        MenuScreens.register(ContainerInit.PAPER_BAG.get(), PaperBagScreen::new);
+
+        /** never do it like me again*/
+        ItemProperties.register(BlockInit.BURGER_BOX.get().asItem(), new ResourceLocation("burger"), (stack, clientWorld, living, another) -> {
+            if (!BurgerBox.getBurger(stack).isEmpty() && BurgerBox.getBurger(stack).getItem() instanceof BlockItem) {
+                Block b = ((BlockItem) BurgerBox.getBurger(stack).getItem()).getBlock();
+                return BurgerBox.convert(b).ordinal();
+            }
+
+            return 0;
+        });
     }
 
 
