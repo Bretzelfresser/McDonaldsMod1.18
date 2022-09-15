@@ -30,7 +30,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
 
     private Container inv = new SimpleContainer(1);
     private boolean closed = false, closing = false, opening = false;
-    private int counter = 0, maxCounter = 0, burnCounter = 0, maxBurnCounter = 0;
+    private int counter = 0, maxCounter = 0, burnCounter = 0, maxBurnCounter = 0, prevCounter = -62;
     private float degrees = MAX_DEGREES;
 
     public BurgerMachineBlockEntity(BlockPos pos, BlockState state) {
@@ -76,6 +76,9 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                             entity.burnCounter++;
                             if (entity.maxBurnCounter < entity.burnCounter) {
                                 entity.finishBurning(recipe);
+                            }else if (entity.burnCounter - entity.prevCounter >= 60){
+                                level.playSound(null, entity.getBlockPos(), SoundInit.BURGER.get(), SoundSource.BLOCKS, 1f, 1f);
+                                entity.prevCounter = entity.burnCounter;
                             }
                             entity.blockUpdate();
                         }
@@ -101,7 +104,6 @@ public class BurgerMachineBlockEntity extends BlockEntity {
 
     protected boolean canStart(BurgerMachineRecipe recipe) {
         if (!isOpening() && !isClosing()) {
-            McDonalds.LOGGER.info("" + recipe.isNeedsClosing());
             return !recipe.isNeedsClosing() || this.isClosed();
         }
         return false;
@@ -126,6 +128,9 @@ public class BurgerMachineBlockEntity extends BlockEntity {
 
     private void work(BurgerMachineRecipe recipe) {
         this.counter++;
+        if (counter - prevCounter >= 60){
+            level.playSound(null, getBlockPos(), SoundInit.BURGER.get(), SoundSource.BLOCKS, 1f, 1f);
+        }
     }
 
     private void finishWork(BurgerMachineRecipe recipe) {
@@ -152,12 +157,14 @@ public class BurgerMachineBlockEntity extends BlockEntity {
         this.maxCounter = 0;
         if (isClosed())
             this.opening = true;
+        prevCounter = -62;
         blockUpdate();
     }
 
     private void resetBurn() {
         this.burnCounter = 0;
         this.maxBurnCounter = 0;
+        prevCounter = -62;
         blockUpdate();
     }
 
@@ -207,6 +214,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
         this.closing = nbt.getBoolean("closing");
         this.degrees = nbt.getFloat("degrees");
         this.opening = nbt.getBoolean("opening");
+        this.prevCounter = nbt.getInt("prevCounter");
     }
 
     @Override
@@ -225,6 +233,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
         compound.putBoolean("closing", this.closing);
         compound.putFloat("degrees", this.degrees);
         compound.putBoolean("opening", this.opening);
+        compound.putInt("prevCounter", this.prevCounter);
     }
 
     @javax.annotation.Nullable
