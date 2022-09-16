@@ -3,6 +3,7 @@ package com.bretzelfresser.mcdonalds.core.datagen;
 import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.block.BurgerBox;
 import com.bretzelfresser.mcdonalds.common.block.Fryer;
+import com.bretzelfresser.mcdonalds.common.block.TableBlock;
 import com.bretzelfresser.mcdonalds.core.BlockInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -34,6 +35,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(BlockInit.OPEN_CHEESBURGER_BOX.get(), existingBlock("burger_box/open_box_cheeseburger"));
         horizontalBlock(BlockInit.OPEN_BIG_MAC_BOX.get(), existingBlock("burger_box/open_box_big_mac"));
         simpleBlockItem(BlockInit.OPEN_BIG_MAC_BOX.get(), existingBlock("burger_box/open_box_big_mac"));
+        makeTable();
+        simpleBlockItem(BlockInit.TABLE.get(), existingBlock("table"));
     }
 
     private void makeFryer(){
@@ -68,6 +71,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 case MC_RYAL_DELUXE -> name += "mc_royal_box";
                 case QUARTER_POUNDER -> name += "quarter_pounder";
                 default -> name += "none";
+            }
+            builder.modelFile(existingBlock(name));
+            builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
+            return builder.build();
+        });
+    }
+
+    private void makeTable(){
+        getVariantBuilder(BlockInit.TABLE.get()).forAllStates(state -> {
+            ConfiguredModel.Builder builder = ConfiguredModel.builder();
+            String name = "table";
+            if (state.getValue(TableBlock.CONNECTED)){
+                name += "_without_feet";
             }
             builder.modelFile(existingBlock(name));
             builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);

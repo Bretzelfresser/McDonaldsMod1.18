@@ -64,6 +64,8 @@ public class BlockInit {
     public static final RegistryObject<Block> OPEN_RYAL_DELUXE_BOX = register("open_royal_deluxe_box", () -> new RotatableBlock(BlockBehaviour.Properties.of(Material.CACTUS).instabreak().noOcclusion()), ModCreativeTab.MC_DONALDS_TAB);
     public static final RegistryObject<Block> OPEN_QUARTER_POUNDER_BOX = register("open_quarter_pounder_box", () -> new RotatableBlock(BlockBehaviour.Properties.of(Material.CACTUS).instabreak().noOcclusion()), ModCreativeTab.MC_DONALDS_TAB);
 
+    public static final RegistryObject<TableBlock> TABLE = register("table", TableBlock::new, ModCreativeTab.MC_DONALDS_TAB);
+
     public static final <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, CreativeModeTab tab){
         return register(name, blockSupplier, new Item.Properties().tab(tab));
     }

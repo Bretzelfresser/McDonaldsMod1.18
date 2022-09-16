@@ -1,0 +1,29 @@
+{
+  "type": "mcdonalds:table_recipe",
+  "ingredients": [
+    {
+      "item": "mcdonalds:bread_base"
+    },
+    {
+      "item": "mcdonalds:cooked_meat"
+    },
+    {
+      "item": "mcdonalds:onion_ring"
+    },
+    {
+      "item": "mcdonalds:pickles"
+    },
+    {
+      "item": "mcdonalds:mustard_bowl"
+    },
+    {
+      "item": "mcdonalds:ketchup_bowl"
+    },
+    {
+      "item": "mcdonalds:bread_simple"
+    }
+  ],
+  "result": {
+    "item": "mcdonalds:cheeseburger"
+  }
+}

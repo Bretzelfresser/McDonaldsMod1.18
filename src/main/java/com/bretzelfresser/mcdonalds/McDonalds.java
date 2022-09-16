@@ -3,6 +3,7 @@ package com.bretzelfresser.mcdonalds;
 import com.bretzelfresser.mcdonalds.client.renderer.BurgerMachineRenderer;
 import com.bretzelfresser.mcdonalds.client.renderer.ChoppingRenderer;
 import com.bretzelfresser.mcdonalds.client.renderer.FryerRenderer;
+import com.bretzelfresser.mcdonalds.client.renderer.TableRenderer;
 import com.bretzelfresser.mcdonalds.client.screens.PaperBagScreen;
 import com.bretzelfresser.mcdonalds.common.block.Burger;
 import com.bretzelfresser.mcdonalds.common.block.BurgerBox;
@@ -74,6 +75,7 @@ public class McDonalds {
         BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.BURGER_MACHINE.get(), BurgerMachineRenderer::new);
         BlockEntityRenderers.register(BlockEntityInit.FRYER.get(), FryerRenderer::new);
+        BlockEntityRenderers.register(BlockEntityInit.TABLE.get(), TableRenderer::new);
 
         ItemBlockRenderTypes.setRenderLayer(BlockInit.FRYER.get(), RenderType.translucent());
 

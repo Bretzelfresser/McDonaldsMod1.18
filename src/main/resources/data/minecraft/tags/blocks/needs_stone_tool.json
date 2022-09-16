@@ -3,6 +3,7 @@
   "values": [
     "mcdonalds:chopping_board",
     "mcdonalds:burger_machine",
-    "mcdonalds:fryer"
+    "mcdonalds:fryer",
+    "mcdonalds:table"
   ]
 }

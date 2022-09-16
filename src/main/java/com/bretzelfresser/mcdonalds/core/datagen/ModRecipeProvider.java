@@ -17,7 +17,6 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        McDonalds.LOGGER.info(BurgerBox.setBurger(BlockInit.BURGER_BOX.get().asItem().getDefaultInstance(), BlockInit.BIG_MAC.get().asItem().getDefaultInstance()).getTag().toString());
         ShapelessRecipeBuilder.shapeless(BlockInit.BURGER_BOX.get()).requires(BlockInit.BURGER_BOX.get()).requires(BlockInit.BIG_MAC.get()).unlockedBy("hasItem", has(BlockInit.BURGER_BOX.get())).save(consumer);
     }
 }

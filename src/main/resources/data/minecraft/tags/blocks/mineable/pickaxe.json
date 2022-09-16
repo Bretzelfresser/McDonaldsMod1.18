@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "mcdonalds:burger_machine"
+    "mcdonalds:burger_machine",
+    "mcdonalds:table"
   ]
 }
