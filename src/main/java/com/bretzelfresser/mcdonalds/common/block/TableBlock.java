@@ -3,7 +3,6 @@ package com.bretzelfresser.mcdonalds.common.block;
 import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.blockentity.TableBlockEntity;
 import com.bretzelfresser.mcdonalds.common.util.WorldUtils;
-import com.bretzelfresser.mcdonalds.core.RecipeInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;

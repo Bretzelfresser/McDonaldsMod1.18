@@ -72,24 +72,7 @@ public class McDonalds {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        BlockEntityRenderers.register(BlockEntityInit.CHOPPING_BOARD.get(), ChoppingRenderer::new);
-        BlockEntityRenderers.register(BlockEntityInit.BURGER_MACHINE.get(), BurgerMachineRenderer::new);
-        BlockEntityRenderers.register(BlockEntityInit.FRYER.get(), FryerRenderer::new);
-        BlockEntityRenderers.register(BlockEntityInit.TABLE.get(), TableRenderer::new);
 
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.FRYER.get(), RenderType.translucent());
-
-        MenuScreens.register(ContainerInit.PAPER_BAG.get(), PaperBagScreen::new);
-
-        /** never do it like me again*/
-        ItemProperties.register(BlockInit.BURGER_BOX.get().asItem(), new ResourceLocation("burger"), (stack, clientWorld, living, another) -> {
-            if (!BurgerBox.getBurger(stack).isEmpty() && BurgerBox.getBurger(stack).getItem() instanceof BlockItem) {
-                Block b = ((BlockItem) BurgerBox.getBurger(stack).getItem()).getBlock();
-                return BurgerBox.convert(b).ordinal();
-            }
-
-            return 0;
-        });
     }
 
 
