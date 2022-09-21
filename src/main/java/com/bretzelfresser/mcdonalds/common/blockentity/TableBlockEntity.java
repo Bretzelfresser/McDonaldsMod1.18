@@ -1,5 +1,6 @@
 package com.bretzelfresser.mcdonalds.common.blockentity;
 
+import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.common.recipe.TableRecipe;
 import com.bretzelfresser.mcdonalds.core.BlockEntityInit;
 import com.bretzelfresser.mcdonalds.core.BlockInit;
@@ -8,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -48,15 +50,14 @@ public class TableBlockEntity extends BlockEntity implements Container {
         for (int i = 0; i < tagList.size(); i++) {
             CompoundTag itemTags = tagList.getCompound(i);
             int slot = itemTags.getInt("Slot");
-
-            if (slot >= 0 && slot < tag.size()) {
+            if (slot >= 0 && slot < tagList.size()) {
                 inv.set(slot, ItemStack.of(itemTags));
             }
         }
-        onLoad();
     }
 
     private void setSize(int size) {
+        this.inv.clear();
         for (int i = 0; i < size; i++) {
             this.inv.add(ItemStack.EMPTY);
         }

@@ -25,6 +25,8 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+
 public class TableBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -37,34 +39,57 @@ public class TableBlock extends Block implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND && level.getBlockState(pos.above()).isAir()){
+        if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND && level.getBlockState(pos.above()).isAir()) {
             TableBlockEntity te = WorldUtils.getTileEntity(TableBlockEntity.class, level, pos);
-            if (te != null && te.getRecipe() != null && !player.getItemInHand(hand).isEmpty()){
+            if (te != null && te.getRecipe() != null && !player.getItemInHand(hand).isEmpty()) {
                 te.getInv().add(ItemStack.EMPTY);
+                //te.getRecipe().getIngs().forEach(i -> McDonalds.LOGGER.info("" + Arrays.toString(i.getItems())));
                 ItemStack remainder = te.insertItem(te.getContainerSize() - 1, player.getItemInHand(hand), false);
-                if (!player.isCreative()){
+                if (!player.isCreative()) {
                     player.setItemInHand(hand, remainder);
                 }
+                //McDonalds.LOGGER.info("" + Arrays.toString(te.getInv().toArray()));
+                if (checkRecipe(te)){
+                    te.clearContent();
+                    te.getInv().add(te.getRecipe().getResultItem().copy());
+                    te.blockUpdate();
+                }
+                te.blockUpdate();
                 return InteractionResult.SUCCESS;
             }
-            if (te != null && player.getItemInHand(hand).isEmpty() && player.isCrouching() && te.getContainerSize() > 0){
-                if (player.addItem(te.getItem(te.getContainerSize() - 1).copy())){
+            if (te != null && player.getItemInHand(hand).isEmpty() && player.isCrouching() && te.getContainerSize() > 0) {
+                if (player.addItem(te.getItem(te.getContainerSize() - 1).copy())) {
                     McDonalds.LOGGER.info("" + te.getItem(te.getContainerSize() - 1).toString());
                     te.getInv().remove(te.getContainerSize() - 1);
                     te.blockUpdate();
                     return InteractionResult.SUCCESS;
                 }
             }
+            te.blockUpdate();
         }
         return InteractionResult.PASS;
     }
 
+    private static boolean checkRecipe(TableBlockEntity te) {
+        if (te == null || te.getRecipe() == null)
+            return false;
+        int counter = 0;
+        for (int i = 0; i < te.getContainerSize(); i++) {
+            if (!te.getRecipe().getIngs().get(i).test(te.getItem(i))) {
+                return false;
+            }else{
+                counter++;
+            }
+        }
+        return counter == te.getRecipe().getIngs().size();
+    }
+
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
-        if (!level.isClientSide()){
-            for (Direction d : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()){
+        if (!level.isClientSide()) {
+            for (Direction d : BlockStateProperties.HORIZONTAL_FACING.getPossibleValues()) {
                 BlockPos neighbor = pos.relative(d);
-                if (!state.getValue(CONNECTED) && level.getBlockState(neighbor).getBlock() instanceof TableBlock && !level.getBlockState(neighbor).getValue(CONNECTED)){
+                if (!state.getValue(CONNECTED) && level.getBlockState(neighbor).getBlock() instanceof TableBlock && !level.getBlockState(neighbor).getValue(CONNECTED)) {
                     level.setBlock(pos, state.setValue(FACING, d.getOpposite()).setValue(CONNECTED, true), 3);
                     level.setBlock(neighbor, state.setValue(FACING, d).setValue(CONNECTED, true), 3);
                 }
@@ -74,12 +99,23 @@ public class TableBlock extends Block implements EntityBlock {
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        if (!level.isClientSide() && state.getValue(CONNECTED)){
-            if (state.getValue(FACING).getOpposite() == direction && !(neighborState.getBlock() instanceof TableBlock)){
+        if (!level.isClientSide() && state.getValue(CONNECTED)) {
+            if (state.getValue(FACING).getOpposite() == direction && !(neighborState.getBlock() instanceof TableBlock)) {
                 return state.setValue(FACING, Direction.NORTH).setValue(CONNECTED, false);
             }
         }
         return state;
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newSTate, boolean isMoving) {
+        if (!level.isClientSide() && !state.is(newSTate.getBlock()) && level.getBlockEntity(pos) != null){
+            TableBlockEntity te = WorldUtils.getTileEntity(TableBlockEntity.class, level, pos);
+            for (int i = 0;i < te.getContainerSize();i++){
+                Block.popResource(level, pos, te.getItem(i));
+            }
+        }
+        super.onRemove(state, level, pos, newSTate, isMoving);
     }
 
     @Override

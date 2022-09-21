@@ -1,5 +1,6 @@
 package com.bretzelfresser.mcdonalds.client.renderer;
 
+import com.bretzelfresser.mcdonalds.McDonalds;
 import com.bretzelfresser.mcdonalds.client.util.RenderUtil;
 import com.bretzelfresser.mcdonalds.common.blockentity.TableBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -28,6 +29,7 @@ public class TableRenderer implements BlockEntityRenderer<TableBlockEntity> {
             Random rand = new Random(10);
             for (int i = 0; i < te.getContainerSize(); i++) {
                 ItemStack stack = te.getItem(i);
+                //McDonalds.LOGGER.info("" + stack.toString());
                 if (!stack.isEmpty()) {
                     poseStack.pushPose();
                     poseStack.translate(0, 0.062 + (i * 0.0625), 0);

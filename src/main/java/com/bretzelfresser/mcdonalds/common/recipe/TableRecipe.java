@@ -48,6 +48,11 @@ public class TableRecipe implements Recipe<TableBlockEntity> {
         return true;
     }
 
+
+    public ImmutableList<Ingredient> getIngs() {
+        return ingredients;
+    }
+
     @Override
     public ItemStack assemble(TableBlockEntity p_44001_) {
         return this.result.copy();
