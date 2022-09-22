@@ -1,0 +1,45 @@
+{
+  "type": "mcdonalds:table_recipe",
+  "ingredients": [
+    {
+      "item": "mcdonalds:bread_base"
+    },
+    {
+      "item": "mcdonalds:big_mac_bowl"
+    },
+    {
+      "item": "mcdonalds:onion_ring"
+    },
+    {
+      "item": "mcdonalds:iceberg_lettuce_slice"
+    },
+    {
+      "item": "mcdonalds:cooked_meat"
+    },
+    {
+      "item": "mcdonalds:bread_middle"
+    },
+
+    {
+      "item": "mcdonalds:big_mac_bowl"
+    },
+    {
+      "item": "mcdonalds:onion_ring"
+    },
+    {
+      "item": "mcdonalds:iceberg_lettuce_slice"
+    },
+    {
+      "item": "mcdonalds:american_cheese"
+    },
+    {
+      "item": "mcdonalds:cooked_meat"
+    },
+    {
+      "item": "mcdonalds:bread_crown"
+    }
+  ],
+  "result": {
+    "item": "mcdonalds:big_mac"
+  }
+}

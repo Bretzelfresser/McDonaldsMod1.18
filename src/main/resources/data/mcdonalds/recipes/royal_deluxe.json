@@ -1,0 +1,29 @@
+{
+  "type": "mcdonalds:table_recipe",
+  "ingredients": [
+    {
+      "item": "mcdonalds:bread_base"
+    },
+    {
+      "item": "mcdonalds:cooked_meat"
+    },
+    {
+      "item": "mcdonalds:american_cheese"
+    },
+    {
+      "item": "mcdonalds:tomato_slice"
+    },
+    {
+      "item": "mcdonalds:iceberg_lettuce_slice"
+    },
+    {
+      "item": "mcdonalds:mayo_bowl"
+    },
+    {
+      "item": "mcdonalds:bread_crown"
+    }
+  ],
+  "result": {
+    "item": "mcdonalds:royal_deluxe"
+  }
+}
