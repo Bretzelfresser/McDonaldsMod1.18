@@ -68,5 +68,18 @@
 
   "block.mcdonalds.burger_box": "Caja de Hamburgeusa con queso",
 
+  "block.mcdonalds.ketchup_bowl": "Cuenco de ketchup",
+  "block.mcdonalds.mayo_bowl": "Cuenco de mayonesa",
+  "block.mcdonalds.mustard_bowl": "Cuenco de mostaza",
+  "block.mcdonalds.big_mac_bowl": "Cuenco de salsa Big Mac",
+  "block.mcdonalds.empty_bowl": "Cuenco vacío",
+
+  "block.mcdonalds.open_cheesburger_box": "Caja de hamburguesa con queso abierta",
+  "block.mcdonalds.open_big_mac_box": "Caja de Bic Mac abierta",
+  "block.mcdonalds.open_royal_deluxe_box": "Caja de Mc Royal Deluxe abierta",
+  "block.mcdonalds.open_quarter_pounder_box": "Caja de Cuarto de Libra abierta",
+
+  "block.mcdonalds.table": "Mesa",
+
   "container.mcdonalds.paper_bag": "Bolsa de Papel"
 }
