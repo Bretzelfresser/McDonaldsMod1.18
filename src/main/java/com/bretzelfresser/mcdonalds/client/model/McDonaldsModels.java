@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 public class McDonaldsModels {
 
     public static final RegistryObject<ItemLike>[] ITEM_MODLES = new RegistryObject[]{
-            ItemInit.BURNT_MEAT_10_1, ItemInit.BOX, ItemInit.COOKED_MEAT_10_1, ItemInit.MEAT_10_1, ItemInit.SPATULA, ItemInit.FRIES_WITH_BOX, ItemInit.BASKET,
+            ItemInit.BOX, ItemInit.SPATULA, ItemInit.FRIES_WITH_BOX, ItemInit.BASKET,
             ItemInit.PAPER_BAG, ItemInit.SODA, ItemInit.EMPTY_SODA};
 
     @SubscribeEvent
