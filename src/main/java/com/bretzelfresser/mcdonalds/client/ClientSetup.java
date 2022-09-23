@@ -35,6 +35,12 @@ public class ClientSetup {
 
         ItemBlockRenderTypes.setRenderLayer(BlockInit.FRYER.get(), RenderType.translucent());
 
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.EMPTY_BOWL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.BIG_MAC_BOWL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.MAYO_BOWL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.MUSTARD_BOWL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.KETCHUP_BOWL.get(), RenderType.cutout());
+
         MenuScreens.register(ContainerInit.PAPER_BAG.get(), PaperBagScreen::new);
     }
 }
