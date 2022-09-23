@@ -77,7 +77,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
                             if (entity.maxBurnCounter < entity.burnCounter) {
                                 entity.finishBurning(recipe);
                             }else if (entity.burnCounter - entity.prevCounter >= 60){
-                                level.playSound(null, entity.getBlockPos(), SoundInit.BURGER.get(), SoundSource.BLOCKS, 0.7f, 1f);
+                                level.playSound(null, entity.getBlockPos(), SoundInit.BURGER.get(), SoundSource.BLOCKS, 0.1F, 1f);
                                 entity.prevCounter = entity.burnCounter;
                             }
                             entity.blockUpdate();
@@ -129,7 +129,7 @@ public class BurgerMachineBlockEntity extends BlockEntity {
     private void work(BurgerMachineRecipe recipe) {
         this.counter++;
         if (counter - prevCounter >= 60){
-            level.playSound(null, getBlockPos(), SoundInit.BURGER.get(), SoundSource.BLOCKS, 0.7f, 1f);
+            level.playSound(null, getBlockPos(), SoundInit.BURGER.get(), SoundSource.BLOCKS, 0.1F, 1f);
         }
     }
 

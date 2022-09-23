@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"3": "mcdonalds:block/burger_box/quarter_pound_box",
-		"particle": "mcdonalds:block/burger_box/big_mac_box"
+		"particle": "mcdonalds:block/burger_box/quarter_pound_box"
 	},
 	"elements": [
 		{

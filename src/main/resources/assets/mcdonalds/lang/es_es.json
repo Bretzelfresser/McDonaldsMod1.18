@@ -78,6 +78,11 @@
   "block.mcdonalds.open_big_mac_box": "Caja de Bic Mac abierta",
   "block.mcdonalds.open_royal_deluxe_box": "Caja de Mc Royal Deluxe abierta",
   "block.mcdonalds.open_quarter_pounder_box": "Caja de Cuarto de Libra abierta",
+  "block.mcdonalds.empty_burger_box": "Caja de hamburguesa vacia",
+  "block.mcdonalds.cheesburger_box": "Caja de Hamburguesa con queso",
+  "block.mcdonalds.big_mac_box": "Caja de Big Mac",
+  "block.mcdonalds.royal_deluxe_box": "Caja de Mc Royal Deluxe",
+  "block.mcdonalds.quarter_pounder_box": "Caja de Cuarto de Libra",
 
   "block.mcdonalds.table": "Mesa",
 

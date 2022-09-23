@@ -34,6 +34,7 @@ public class ClientSetup {
         BlockEntityRenderers.register(BlockEntityInit.TABLE.get(), TableRenderer::new);
 
         ItemBlockRenderTypes.setRenderLayer(BlockInit.FRYER.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.BURGER_MACHINE.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(BlockInit.EMPTY_BOWL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockInit.BIG_MAC_BOWL.get(), RenderType.cutout());

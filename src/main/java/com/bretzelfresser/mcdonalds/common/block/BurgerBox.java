@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.function.Supplier;
@@ -41,5 +43,20 @@ public class BurgerBox extends ShapedRotatableBlock {
             return InteractionResult.SUCCESS;
         }
         return super.use(state, level, pos, player, hand, hit);
+    }
+
+    public static VoxelShape makeEmptyBox(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.2125, -0.00625, 0.2125, 0.7875, 0.38125, 0.7875), BooleanOp.OR);
+
+        return shape;
+    }
+
+    public static VoxelShape makeBigMacBox(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.box(0.21875, 0, 0.21875, 0.78125, 0.1875, 0.78125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.box(0.2125, 0.11875, 0.2125, 0.7875, 0.38125, 0.7875), BooleanOp.OR);
+
+        return shape;
     }
 }

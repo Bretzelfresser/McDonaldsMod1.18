@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -32,13 +33,14 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
 
-    //private static final VoxelShape SHAPE = makeShape();
 
-    public ChoppingBoard() {
-        super(BlockBehaviour.Properties.of(Material.WOOD).strength(2, 3).noOcclusion().requiresCorrectToolForDrops(), makeShape());
+    public ChoppingBoard(Properties properties, VoxelShape shape) {
+        super(properties, shape);
     }
 
     @Override
@@ -78,11 +80,6 @@ public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
         return InteractionResult.PASS;
     }
 
-    /*@Override
-    public VoxelShape getShape(BlockState state, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-        return SHAPE;
-    }*/
-
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!level.isClientSide() && !state.is(newState.getBlock())) {
@@ -101,11 +98,13 @@ public class ChoppingBoard extends ShapedRotatableBlock implements EntityBlock {
         return world.getRecipeManager().getRecipeFor(RecipeInit.CHOPPING_RECIPE, inv, world).orElse(null);
     }
 
-    public static VoxelShape makeShape() {
-        VoxelShape shape = Shapes.or(Shapes.empty(), Shapes.create(0.4375, 0, 0.0625, 0.5625, 0.0625, 0.125));
-        shape = Shapes.or(shape, Shapes.create(0.1875, 0, 0.0625, 0.4375, 0.0625, 0.1875));
-        shape = Shapes.or(shape, Shapes.create(0.5625, 0, 0.0625, 0.8125, 0.0625, 0.1875));
-        shape = Shapes.or(shape, Shapes.create(0.1875, 0, 0.1875, 0.8125, 0.0625, 0.9375));
+    public static VoxelShape makeShape(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.or(shape, Shapes.box(0.059375, 0, 0.453125, 0.12187500000000001, 0.0625, 0.578125));
+        shape = Shapes.or(shape, Shapes.box(0.184375, 0, 0.203125, 0.934375, 0.0625, 0.828125));
+        shape = Shapes.or(shape, Shapes.box(0.059375, 0, 0.578125, 0.184375, 0.0625, 0.828125));
+        shape = Shapes.or(shape, Shapes.box(0.059375, 0, 0.203125, 0.184375, 0.0625, 0.453125));
+
 
         return shape;
     }
