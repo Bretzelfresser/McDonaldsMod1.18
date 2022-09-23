@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -23,11 +24,18 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TableBlock extends Block implements EntityBlock {
+
+    protected static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty CONNECTED = BooleanProperty.create("connected");
@@ -35,6 +43,7 @@ public class TableBlock extends Block implements EntityBlock {
     public TableBlock() {
         super(BlockBehaviour.Properties.of(Material.METAL).noOcclusion().strength(5).requiresCorrectToolForDrops());
         this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(CONNECTED, false));
+        runCalculation(withoutFeet());
     }
 
     @Override
@@ -48,10 +57,15 @@ public class TableBlock extends Block implements EntityBlock {
                 if (!player.isCreative()) {
                     player.setItemInHand(hand, remainder);
                 }
-                //McDonalds.LOGGER.info("" + Arrays.toString(te.getInv().toArray()));
                 if (checkRecipe(te)){
+                    for (ItemStack stack : te.getInv()){
+                        if (stack.getItem().hasContainerItem(stack)){
+                            Block.popResource(level, pos, stack.getContainerItem());
+                        }
+                    }
+                    ItemStack result = te.getRecipe().getResultItem().copy();
                     te.clearContent();
-                    te.getInv().add(te.getRecipe().getResultItem().copy());
+                    te.getInv().add(result);
                     te.blockUpdate();
                 }
                 te.blockUpdate();
@@ -71,7 +85,7 @@ public class TableBlock extends Block implements EntityBlock {
     }
 
     private static boolean checkRecipe(TableBlockEntity te) {
-        if (te == null || te.getRecipe() == null)
+        if (te == null || te.getRecipe() == null || te.getInv().size() != te.getRecipe().getIngs().size())
             return false;
         int counter = 0;
         for (int i = 0; i < te.getContainerSize(); i++) {
@@ -128,5 +142,52 @@ public class TableBlock extends Block implements EntityBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new TableBlockEntity(pos, state);
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext p_60558_) {
+        if (!state.getValue(CONNECTED))
+            return withFeet();
+        return SHAPES.get(state.getValue(FACING));
+    }
+
+    protected static void calculateShapes(Direction to, VoxelShape shape) {
+        VoxelShape[] buffer = new VoxelShape[] { shape, Shapes.empty() };
+
+        int times = (to.get2DDataValue() - Direction.NORTH.get2DDataValue() + 4) % 4;
+        for (int i = 0; i < times; i++) {
+            buffer[0].forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> buffer[1] = Shapes.or(buffer[1],
+                    Shapes.create(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
+            buffer[0] = buffer[1];
+            buffer[1] = Shapes.empty();
+        }
+
+        SHAPES.put(to, buffer[0]);
+    }
+
+    private void runCalculation(VoxelShape shape) {
+        for (Direction direction : Direction.values()) {
+            calculateShapes(direction, shape);
+        }
+    }
+
+    public VoxelShape withFeet(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.or(shape, Shapes.box(0.9375, 0, 0, 1, 0.9375, 0.0625));
+        shape = Shapes.or(shape, Shapes.box(0, 0, 0, 0.0625, 0.9375, 0.0625));
+        shape = Shapes.or(shape, Shapes.box(0.9375, 0, 0.9375, 1, 0.9375, 1));
+        shape = Shapes.or(shape, Shapes.box(0, 0.9375, 0, 1, 0.9984375, 1));
+        shape = Shapes.or(shape, Shapes.box(0, 0, 0.9375, 0.0625, 0.9375, 1));
+
+        return shape;
+    }
+
+    public VoxelShape withoutFeet(){
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.or(shape, Shapes.box(0, 0, 0, 0.0625, 0.9375, 0.0625));
+        shape = Shapes.or(shape, Shapes.box(0.9375, 0, 0, 1, 0.9375, 0.0625));
+        shape = Shapes.or(shape, Shapes.box(0, 0.9375, 0, 1, 0.9984375, 1));
+
+        return shape;
     }
 }

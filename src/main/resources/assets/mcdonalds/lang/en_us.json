@@ -78,6 +78,11 @@
   "block.mcdonalds.open_big_mac_box": "Open Bic Mac box",
   "block.mcdonalds.open_royal_deluxe_box": "Open Mc Royal Deluxe box",
   "block.mcdonalds.open_quarter_pounder_box": "Open Quarter Pounder box",
+  "block.mcdonalds.cheesburger_box": "Chesseburger Box",
+  "block.mcdonalds.empty_burger_box": "Empty Burger Box",
+  "block.mcdonalds.big_mac_box": "Big Mac Box",
+  "block.mcdonalds.royal_deluxe_box": "Mc Royal Deluxe Box",
+  "block.mcdonalds.quarter_pounder_box": "Quarter Pounder Box",
 
   "block.mcdonalds.table": "Table",
 

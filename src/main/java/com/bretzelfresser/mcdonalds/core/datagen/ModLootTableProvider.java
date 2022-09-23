@@ -47,6 +47,14 @@ public class ModLootTableProvider extends LootTableProvider {
             dropSelf(BlockInit.COPPING_BOARD.get());
             dropSelf(BlockInit.FRYER.get());
             dropSelf(BlockInit.QUARTER_POUNDER.get());
+            dropSelf(BlockInit.ROYAL_DELUXE_BOX.get());
+            dropSelf(BlockInit.CHEESBURGER_BOX.get());
+            dropSelf(BlockInit.BIG_MAC_BOX.get());
+            dropSelf(BlockInit.QUARTER_POUNDER_BOX.get());
+            dropSelf(BlockInit.OPEN_ROYAL_DELUXE_BOX.get());
+            dropSelf(BlockInit.OPEN_CHEESEBURGER_BOX.get());
+            dropSelf(BlockInit.OPEN_BIG_MAC_BOX.get());
+            dropSelf(BlockInit.OPEN_QUARTER_POUNDER_BOX.get());
         }
 
         @Override

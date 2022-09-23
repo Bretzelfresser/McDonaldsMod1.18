@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mcdonalds:block/burger_box/box_mc_royal_box"
+    },
+    "facing=south": {
+      "model": "mcdonalds:block/burger_box/box_mc_royal_box",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mcdonalds:block/burger_box/box_mc_royal_box",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "mcdonalds:block/burger_box/box_mc_royal_box",
+      "y": 90
+    }
+  }
+}

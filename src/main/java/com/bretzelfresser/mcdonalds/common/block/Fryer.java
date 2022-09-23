@@ -35,7 +35,7 @@ public class Fryer extends RotatableBlock implements EntityBlock {
 
     public Fryer() {
         super(BlockBehaviour.Properties.of(Material.METAL).noOcclusion().requiresCorrectToolForDrops().strength(3));
-        this.registerDefaultState(this.getStateDefinition().any().setValue(OIL, 0).setValue(BASKET, false).setValue(HORIZONTAL_FACING, Direction.NORTH));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(OIL, 0).setValue(BASKET, false).setValue(FACING, Direction.NORTH));
     }
 
     @Override

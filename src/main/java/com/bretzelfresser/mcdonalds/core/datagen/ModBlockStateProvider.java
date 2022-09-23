@@ -1,7 +1,6 @@
 package com.bretzelfresser.mcdonalds.core.datagen;
 
 import com.bretzelfresser.mcdonalds.McDonalds;
-import com.bretzelfresser.mcdonalds.common.block.BurgerBox;
 import com.bretzelfresser.mcdonalds.common.block.Fryer;
 import com.bretzelfresser.mcdonalds.common.block.TableBlock;
 import com.bretzelfresser.mcdonalds.core.BlockInit;
@@ -25,16 +24,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(BlockInit.QUARTER_POUNDER.get(), new ModelFile.ExistingModelFile(modLoc("block/quarter_pounder"), models().existingFileHelper));
         simpleBlockItem(BlockInit.QUARTER_POUNDER.get(), new ModelFile.ExistingModelFile(modLoc("block/quarter_pounder"), models().existingFileHelper));
         makeBurgerBox();
-        simpleBlockItem(BlockInit.BURGER_BOX.get(), existingBlock("burger_box/box_cheeseburger"));
-        makeFryer();
-        horizontalBlock(BlockInit.OPEN_QUARTER_POUNDER_BOX.get(), existingBlock("burger_box/open_box_quarterpound"));
-        simpleBlockItem(BlockInit.OPEN_QUARTER_POUNDER_BOX.get(), existingBlock("burger_box/open_box_quarterpound"));
-        horizontalBlock(BlockInit.OPEN_RYAL_DELUXE_BOX.get(),  existingBlock("burger_box/open_box_mcroyaldeluxe"));
-        simpleBlockItem(BlockInit.OPEN_RYAL_DELUXE_BOX.get(), existingBlock("burger_box/open_box_mcroyaldeluxe"));
-        horizontalBlock(BlockInit.OPEN_CHEESBURGER_BOX.get(), existingBlock("burger_box/open_box_cheeseburger"));
-        simpleBlockItem(BlockInit.OPEN_CHEESBURGER_BOX.get(), existingBlock("burger_box/open_box_cheeseburger"));
+        horizontalBlock(BlockInit.EMPTY_BURGER_BOX.get(), existingBlock("burger_box/burger_box"));
+        simpleBlockItem(BlockInit.EMPTY_BURGER_BOX.get(), existingBlock("burger_box/burger_box"));
+        horizontalBlock(BlockInit.OPEN_CHEESEBURGER_BOX.get(), existingBlock("burger_box/open_box_cheeseburger"));
+        simpleBlockItem(BlockInit.OPEN_CHEESEBURGER_BOX.get(), existingBlock("burger_box/open_box_cheeseburger"));
         horizontalBlock(BlockInit.OPEN_BIG_MAC_BOX.get(), existingBlock("burger_box/open_box_big_mac"));
         simpleBlockItem(BlockInit.OPEN_BIG_MAC_BOX.get(), existingBlock("burger_box/open_box_big_mac"));
+        horizontalBlock(BlockInit.OPEN_ROYAL_DELUXE_BOX.get(), existingBlock("burger_box/open_box_mc_royal_box"));
+        simpleBlockItem(BlockInit.OPEN_ROYAL_DELUXE_BOX.get(), existingBlock("burger_box/open_box_mc_royal_box"));
+        horizontalBlock(BlockInit.OPEN_QUARTER_POUNDER_BOX.get(), existingBlock("burger_box/open_box_quarter_pounder"));
+        simpleBlockItem(BlockInit.OPEN_QUARTER_POUNDER_BOX.get(), existingBlock("burger_box/open_box_quarter_pounder"));
+        makeFryer();
         makeTable();
         simpleBlockItem(BlockInit.TABLE.get(), existingBlock("table"));
     }
@@ -62,20 +62,42 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void makeBurgerBox(){
-        getVariantBuilder(BlockInit.BURGER_BOX.get()).forAllStates(state -> {
+        getVariantBuilder(BlockInit.CHEESBURGER_BOX.get()).forAllStates(state -> {
             ConfiguredModel.Builder builder = ConfiguredModel.builder();
-            String name = "burger_box/box_";
-            switch (state.getValue(BurgerBox.TYPE)){
-                case CHEESBURGER -> name += "cheeseburger";
-                case BIG_MAC -> name += "big_mac";
-                case MC_RYAL_DELUXE -> name += "mc_royal_box";
-                case QUARTER_POUNDER -> name += "quarter_pounder";
-                default -> name += "none";
-            }
+            String name = "box_cheeseburger";
+            name = "burger_box/" + name;
             builder.modelFile(existingBlock(name));
             builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
             return builder.build();
         });
+        getVariantBuilder(BlockInit.QUARTER_POUNDER_BOX.get()).forAllStates(state -> {
+            ConfiguredModel.Builder builder = ConfiguredModel.builder();
+            String name = "box_quarter_pounder";
+            name = "burger_box/" + name;
+            builder.modelFile(existingBlock(name));
+            builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
+            return builder.build();
+        });
+        getVariantBuilder(BlockInit.BIG_MAC_BOX.get()).forAllStates(state -> {
+            ConfiguredModel.Builder builder = ConfiguredModel.builder();
+            String name = "box_big_mac";
+            name = "burger_box/" + name;
+            builder.modelFile(existingBlock(name));
+            builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
+            return builder.build();
+        });
+        getVariantBuilder(BlockInit.ROYAL_DELUXE_BOX.get()).forAllStates(state -> {
+            ConfiguredModel.Builder builder = ConfiguredModel.builder();
+            String name = "box_mc_royal_box";
+            name = "burger_box/" + name;
+            builder.modelFile(existingBlock(name));
+            builder.rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360);
+            return builder.build();
+        });
+        simpleBlockItem(BlockInit.ROYAL_DELUXE_BOX.get(), existingBlock("burger_box/box_mc_royal_box"));
+        simpleBlockItem(BlockInit.BIG_MAC_BOX.get(), existingBlock("burger_box/box_big_mac"));
+        simpleBlockItem(BlockInit.QUARTER_POUNDER_BOX.get(), existingBlock("burger_box/box_quarter_pounder"));
+        simpleBlockItem(BlockInit.CHEESBURGER_BOX.get(), existingBlock("burger_box/box_cheeseburger"));
     }
 
     private void makeTable(){

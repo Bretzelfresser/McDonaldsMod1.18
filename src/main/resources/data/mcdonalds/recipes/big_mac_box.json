@@ -2,14 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "mcdonalds:burger_box"
+      "item": "mcdonalds:empty_burger_box"
     },
     {
       "item": "mcdonalds:big_mac"
     }
   ],
   "result": {
-    "item": "mcdonalds:burger_box",
-    "nbt": "{burger:{Count:1b,id:\"mcdonalds:big_mac\"}}"
+    "item": "mcdonalds:big_mac_box"
   }
 }

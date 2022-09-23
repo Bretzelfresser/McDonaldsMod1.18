@@ -14,7 +14,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShapedRotatableBlock extends HorizontalDirectionalBlock {
+public class ShapedRotatableBlock extends RotatableBlock {
     protected static final Map<Direction, VoxelShape> SHAPES = new HashMap<Direction, VoxelShape>();
 
     public ShapedRotatableBlock(Properties p_54120_, VoxelShape shape) {
@@ -50,11 +50,5 @@ public class ShapedRotatableBlock extends HorizontalDirectionalBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
         return SHAPES.get(state.getValue(FACING));
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(FACING);
     }
 }

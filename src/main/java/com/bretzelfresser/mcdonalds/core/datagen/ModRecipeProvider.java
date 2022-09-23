@@ -7,6 +7,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.level.block.Block;
 
 import java.util.function.Consumer;
 
@@ -17,6 +18,13 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        ShapelessRecipeBuilder.shapeless(BlockInit.BURGER_BOX.get()).requires(BlockInit.BURGER_BOX.get()).requires(BlockInit.BIG_MAC.get()).unlockedBy("hasItem", has(BlockInit.BURGER_BOX.get())).save(consumer);
+       makeBurgerBoxRecipe(consumer, BlockInit.CHEESEBURGER.get(), BlockInit.CHEESBURGER_BOX.get());
+       makeBurgerBoxRecipe(consumer, BlockInit.BIG_MAC.get(), BlockInit.BIG_MAC_BOX.get());
+       makeBurgerBoxRecipe(consumer,BlockInit.QUARTER_POUNDER.get(), BlockInit.QUARTER_POUNDER_BOX.get());
+       makeBurgerBoxRecipe(consumer, BlockInit.ROYAL_DELUXE.get(), BlockInit.ROYAL_DELUXE_BOX.get());
+    }
+
+    private void makeBurgerBoxRecipe(Consumer<FinishedRecipe> consumer, Block burger, Block burgerBox){
+        ShapelessRecipeBuilder.shapeless(burgerBox).requires(BlockInit.EMPTY_BURGER_BOX.get()).requires(burger).unlockedBy("hasItem", has(burger)).save(consumer);
     }
 }

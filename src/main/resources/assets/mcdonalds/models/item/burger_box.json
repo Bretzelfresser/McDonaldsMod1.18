@@ -1,9 +1,0 @@
-{
-  "parent": "mcdonalds:block/burger_box/burger_box",
-  "overrides": [
-    { "predicate": { "burger": 0 }, "model": "mcdonalds:item/burger_box" },
-    { "predicate": { "burger": 1 }, "model": "mcdonalds:item/burger_box_big_mac" },
-    { "predicate": { "burger": 2 }, "model": "mcdonalds:item/burger_box_quarter_pounder" },
-    { "predicate": { "burger": 3 }, "model": "mcdonalds:item/burger_box_ryal" }
-  ]
-}
